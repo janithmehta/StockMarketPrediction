@@ -1,0 +1,20 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class = "right_col main_content col-md-offset-2">
+
+    <div>
+        {% if investible == 1 %}
+            <h2 style="color: #00CC33">It's a Good Investment! :)</h2>
+        {% else %}
+            <h2 style="color: #942a25">Geez! Beware of this company</h2>
+        {% endif %}
+    </div>
+    <div>
+       <a class="btn btn-primary" href="{% url 'technical' company=company %}">See the Prices?</a>
+    </div>
+</div>
+    
+{% endblock %}

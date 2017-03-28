@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Stock Market Prediction {% endblock %}</title>
+
+    <!-- Bootstrap -->
+    <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link href="{% static 'vendors/font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
+    <!-- iCheck -->
+    <link href="{% static 'vendors/iCheck/skins/flat/green.css' %}" rel="stylesheet">
+    <!-- bootstrap-progressbar -->
+    <link href="{% static 'vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css' %}" rel="stylesheet">
+    <!-- jVectorMap -->
+    <link href="{% static 'css/maps/jquery-jvectormap-2.0.3.css' %}" rel="stylesheet"/>
+
+    <!-- Custom Theme Style -->
+    <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
+
+</head>
+{#<body>#}
+{##}
+{#    <nav class="navbar navbar-inverse">#}
+{#      <div class="container-fluid">#}
+{#        <div class="navbar-header">#}
+{#          <a class="navbar-brand" href="/">WebsiteTracker</a>#}
+{#        </div>#}
+{#        <ul class="nav navbar-nav">#}
+{#          <li><a href="/">Home</a></li>#}
+{#            {% block navigation %}#}
+{#                <li><a href="/acccounts/login">Login</a></li>#}
+{#                <li><a href="/accoutns/register">Register</a></li>#}
+{#          {% endblock %}#}
+{#        </ul>#}
+{#      </div>#}
+{#    </nav>#}
+{##}
+{#    <div class="container-fluid">#}
+{#        <div class="col-md-6 col-md-offset-4">#}
+{#            {% block content %}<h1>Welcome to Website Tracking</h1>{% endblock %}#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#</body>#}
+{#</html>#}
+
+<body class="nav-md">
+    <div class="container body">
+      <div class="main_container">
+        <div class="col-md-3 left_col">
+          <div class="left_col scroll-view">
+            <div class="navbar nav_title" style="border: 0;">
+              <a href="index.html" class="site_title"><i class="fa fa-line-chart"></i> <span>Stock Market Prediction</span></a>
+            </div>
+
+            <div class="clearfix"></div>
+
+            <!-- menu profile quick info -->
+            <div class="profile">
+              <div class="profile_pic">
+                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
+              </div>
+              <div class="profile_info">
+                <span>Welcome,</span>
+                <h2>Janit Mehta</h2>
+              </div>
+            </div>
+            <!-- /menu profile quick info -->
+
+            <br />
+
+            <!-- sidebar menu -->
+            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+              <div class="menu_section">
+                <h3>Prediction Modules</h3>
+                <ul class="nav side-menu">
+                  <li><a><i class="fa fa-home"></i> Technical Analysis <span class="fa fa-chevron-right"></span></a>
+                    <ul class="nav child_menu">
+                      <li><a href="ambuja.html">Ambuja Cement</a></li>
+                      <li><a href="hdil.html">HDIL</a></li>
+                      <li><a href="bob.html">Bank Of Baroda</a></li>
+                      <li><a href="asian.html">Asian Paints</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="fundamental.html"><i class="fa fa-edit"></i> Fundamental Analysis <span class="fa fa-chevron-right"></span></a>
+                  </li>
+
+                </ul>
+              </div>
+
+            </div>
+            <!-- /sidebar menu -->
+
+            <!-- /menu footer buttons -->
+            <div class="sidebar-footer hidden-small">
+              <a data-toggle="tooltip" data-placement="top" title="Settings">
+                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
+                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Lock">
+                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
+              </a>
+              <a data-toggle="tooltip" data-placement="top" title="Logout">
+                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+              </a>
+            </div>
+            <!-- /menu footer buttons -->
+          </div>
+        </div>
+
+        <!-- top navigation -->
+        <div class="top_nav">
+          <div class="nav_menu">
+            <nav class="" role="navigation">
+              <div class="nav toggle">
+                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+              </div>
+
+              <ul class="nav navbar-nav navbar-right">
+                <li class="">
+                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
+                    <img src="images/img.jpg" alt="">Janit Mehta
+                    <span class=" fa fa-angle-down"></span>
+                  </a>
+                  <ul class="dropdown-menu dropdown-usermenu pull-right">
+                    <li><a href="javascript:;"> Profile</a></li>
+                    <li>
+                      <a href="javascript:;">
+                        <span class="badge bg-red pull-right">50%</span>
+                        <span>Settings</span>
+                      </a>
+                    </li>
+                    <li><a href="javascript:;">Help</a></li>
+                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+        <!-- /top navigation -->
+
+        <!-- page content -->
+        {% block content %}
+{#        <div class="right_col" role="main">#}
+{#          <!-- top tiles -->#}
+{#          <div class="row tile_count">#}
+{#            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">#}
+{#              <span class="count_top">Ambuja Cements Ltd (AMBUJACEM.NS)</span>#}
+{#              <div class="count">229.25</div>#}
+{#              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>2.35 (1.01%) </i></span>#}
+{#            </div>#}
+{#          </div>#}
+{#          <!-- /top tiles -->#}
+{##}
+{#          <div class="row">#}
+{#            <div class="col-md-12 col-sm-12 col-xs-12">#}
+{#              <div class="dashboard_graph">#}
+{##}
+{#               <div class="row x_title">#}
+{#                  <div class="col-md-6">#}
+{#                    <h3>Stock Price <small></small></h3>#}
+{#                  </div>#}
+{#                  <div class="col-md-6">#}
+{#                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">#}
+{#                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>#}
+{#                      <span>October 28, 2013 - January 27, 2016</span> <b class="caret"></b>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{##}
+{#                <div class="col-md-9 col-sm-9 col-xs-12">#}
+{#                  <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>#}
+{#                  <div style="width: 100%;">#}
+{#                    <div class="demo-placeholder" style="width: 100%; height:330px;">#}
+{#                      <img src="ambuja/Stock.png" width=130%></img>#}
+{#                    </div>#}
+{#                  </div>#}
+{#                </div>#}
+{#                <div></div>#}
+{#                <div class="clearfix"></div>#}
+{##}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#          </div>#}
+{#          <br />#}
+{##}
+{#          <div class="row">#}
+{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#              <div class="x_panel tile fixed_height_320">#}
+{#                <div class="x_title">#}
+{#                  <h2>Output for 04-11-2016</h2>#}
+{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
+{#                    </li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#              <div class="x_content">#}
+{#                <table class="" style="width:100%">#}
+{#                    <tr>#}
+{#                      <th style="width:37%;">#}
+{#                        <p>Prediction</p>#}
+{#                      </th>#}
+{#                      <th style="width:37%;">#}
+{#                        <p>Predicted Price</p>#}
+{#                      </th>#}
+{#                      <th style="width:37%;">#}
+{#                        <p>Actual Price</p>#}
+{#                      </th>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>Next Day</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>240.74</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>241.69</p>#}
+{#                      </td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>5 Day</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>239.42</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>219.55</p>#}
+{#                      </td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>10 Day</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>237.06</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>198.80</p>#}
+{#                      </td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>15 Day</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>235.67</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>203.0</p>#}
+{#                      </td>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>20 Day</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>234.52</p>#}
+{#                      </td>#}
+{#                      <td style="width:37%;">#}
+{#                        <p>205.05</p>#}
+{#                      </td>#}
+{#                    </tr>#}
+{#                  </table>#}
+{##}
+{##}
+{#                  <table class="tile_info" style="width:100%">#}
+{#                    <tr>#}
+{#                      <th style="width:37%;">#}
+{#                        <p>Legend:</p>#}
+{#                      </th>#}
+{#                      <th style="width:37%;"><p></p></th>#}
+{#                    </tr>#}
+{#                    <tr>#}
+{#                        <td style="width:37%;">#}
+{#                          <p><i class="fa fa-square blue"></i>Predicted Price </p>#}
+{#                        </td>#}
+{#                        <td style="width:37%;">#}
+{#                          <p><i class="fa fa-square red"></i>Actual Price </p>#}
+{#                        </td>#}
+{#                    </tr>#}
+{#                  </table>#}
+{#                  </div>#}
+{#                </div>#}
+{#            </div>#}
+{##}
+{##}
+{##}
+{##}
+{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#              <div class="x_panel tile fixed_height_320">#}
+{#                <div class="x_title">#}
+{#                  <h2>Next Day Predicton</h2>#}
+{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
+{#                    </li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#                <div class="x_content">#}
+{#                    <div>#}
+{#                        <img src="ambuja/1 Day Price.png" height=40% width=95%>#}
+{#                    </div>#}
+{#                    <div class="clearfix"></div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#              <div class="x_panel tile fixed_height_320">#}
+{#                <div class="x_title">#}
+{#                  <h2>5 Day Predicton</h2>#}
+{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
+{#                    </li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#                <div class="x_content">#}
+{#                    <div>#}
+{#                        <img src="ambuja/5 Day Price.png" height=40% width=95%>#}
+{#                    </div>#}
+{#                    <div class="clearfix"></div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#          </div>#}
+{##}
+{#          <div class="row">#}
+{##}
+{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#              <div class="x_panel tile fixed_height_320">#}
+{#                <div class="x_title">#}
+{#                  <h2>10 Day Predicton</h2>#}
+{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
+{#                    </li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#                <div class="x_content">#}
+{#                    <div>#}
+{#                        <img src="ambuja/10 Day Price.png" height=40% width=95%>#}
+{#                    </div>#}
+{#                    <div class="clearfix"></div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#              <div class="x_panel tile fixed_height_320">#}
+{#                <div class="x_title">#}
+{#                  <h2>15 Day Predicton</h2>#}
+{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
+{#                    </li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#                <div class="x_content">#}
+{#                    <div>#}
+{#                        <img src="ambuja/15 Day Price.png" height=40% width=95%>#}
+{#                    </div>#}
+{#                    <div class="clearfix"></div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
+{#              <div class="x_panel tile fixed_height_320">#}
+{#                <div class="x_title">#}
+{#                  <h2>20 Day Predicton</h2>#}
+{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
+{#                    </li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
+{#                    </li>#}
+{#                  </ul>#}
+{#                  <div class="clearfix"></div>#}
+{#                </div>#}
+{#                <div class="x_content">#}
+{#                    <div>#}
+{#                        <img src="ambuja/20 Day Price.png" height=40% width=95%>#}
+{#                    </div>#}
+{#                    <div class="clearfix"></div>#}
+{#                </div>#}
+{#              </div>#}
+{#            </div>#}
+{##}
+{##}
+{##}
+{#          </div>#}
+{##}
+{##}
+{#              </div>#}
+{#            </div>#}
+{#          </div>#}
+{#        </div>#}
+          <div class="right_col main_content">
+            <h2>Welcome to Stock Market Prediction</h2>
+            <div>
+                <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>
+            </div>
+          </div>
+        {% endblock %}
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
+
+    <!-- jQuery -->
+    <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+    <!-- Bootstrap -->
+    <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.min.js' %}"></script>
+    <!-- FastClick -->
+    <script src="{% static 'vendors/fastclick/lib/fastclick.js' %}"></script>
+    <!-- NProgress -->
+    <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+    <!-- Chart.js -->
+    <script src="{% static 'vendors/Chart.js/dist/Chart.min.js' %}"></script>
+    <!-- gauge.js -->
+    <script src="{% static 'vendors/bernii/gauge.js/dist/gauge.min.js' %}"></script>
+    <!-- bootstrap-progressbar -->
+    <script src="{% static 'vendors/bootstrap-progressbar/bootstrap-progressbar.min.js' %}"></script>
+    <!-- iCheck -->
+    <script src="{% static 'vendors/iCheck/icheck.min.js' %}"></script>
+    <!-- Skycons -->
+    <script src="{% static 'vendors/skycons/skycons.js' %}"></script>
+    <!-- Flot -->
+    <script src="{% static 'vendors/Flot/jquery.flot.js' %}"></script>
+    <script src="{% static 'vendors/Flot/jquery.flot.pie.js' %}"></script>
+    <script src="{% static 'vendors/Flot/jquery.flot.time.js' %}"></script>
+    <script src="{% static 'vendors/Flot/jquery.flot.stack.js' %}"></script>
+    <script src="{% static 'vendors/Flot/jquery.flot.resize.js' %}"></script>
+    <!-- Flot plugins -->
+    <script src="js/flot/jquery.flot.orderBars.js' %}"></script>
+    <script src="js/flot/date.js' %}"></script>
+    <script src="js/flot/jquery.flot.spline.js' %}"></script>
+    <script src="js/flot/curvedLines.js' %}"></script>
+    <!-- jVectorMap -->
+    <script src="js/maps/jquery-jvectormap-2.0.3.min.js' %}"></script>
+    <!-- bootstrap-daterangepicker -->
+    <script src="js/moment/moment.min.js' %}"></script>
+    <script src="js/datepicker/daterangepicker.js' %}"></script>
+
+    <!-- Custom Theme Scripts -->
+    <script src="{% static 'build/js/custom.min.js' %}"></script>
+
+    <!-- Flot -->
+    <script>
+      $(document).ready(function() {
+        var data1 = [
+          [gd(2012, 1, 1), 17],
+          [gd(2012, 1, 2), 74],
+          [gd(2012, 1, 3), 6],
+          [gd(2012, 1, 4), 39],
+          [gd(2012, 1, 5), 20],
+          [gd(2012, 1, 6), 85],
+          [gd(2012, 1, 7), 7]
+        ];
+
+        var data2 = [
+          [gd(2012, 1, 1), 82],
+          [gd(2012, 1, 2), 23],
+          [gd(2012, 1, 3), 66],
+          [gd(2012, 1, 4), 9],
+          [gd(2012, 1, 5), 119],
+          [gd(2012, 1, 6), 6],
+          [gd(2012, 1, 7), 9]
+        ];
+        $("#canvas_dahs").length && $.plot($("#canvas_dahs"), [
+          data1, data2
+        ], {
+          series: {
+            lines: {
+              show: false,
+              fill: true
+            },
+            splines: {
+              show: true,
+              tension: 0.4,
+              lineWidth: 1,
+              fill: 0.4
+            },
+            points: {
+              radius: 0,
+              show: true
+            },
+            shadowSize: 2
+          },
+          grid: {
+            verticalLines: true,
+            hoverable: true,
+            clickable: true,
+            tickColor: "#d5d5d5",
+            borderWidth: 1,
+            color: '#fff'
+          },
+          colors: ["rgba(38, 185, 154, 0.38)", "rgba(3, 88, 106, 0.38)"],
+          xaxis: {
+            tickColor: "rgba(51, 51, 51, 0.06)",
+            mode: "time",
+            tickSize: [1, "day"],
+            //tickLength: 10,
+            axisLabel: "Date",
+            axisLabelUseCanvas: true,
+            axisLabelFontSizePixels: 12,
+            axisLabelFontFamily: 'Verdana, Arial',
+            axisLabelPadding: 10
+          },
+          yaxis: {
+            ticks: 8,
+            tickColor: "rgba(51, 51, 51, 0.06)",
+          },
+          tooltip: false
+        });
+
+        function gd(year, month, day) {
+          return new Date(year, month - 1, day).getTime();
+        }
+      });
+    </script>
+    <!-- /Flot -->
+
+    <!-- jVectorMap -->
+    <script src="{%static 'js/maps/jquery-jvectormap-world-mill-en.js' %}"></script>
+    <script src="{%static 'js/maps/jquery-jvectormap-us-aea-en.js' %}"></script>
+    <script src="{%static 'js/maps/gdp-data.js' %}"></script>
+    <script>
+      $(document).ready(function(){
+        $('#world-map-gdp').vectorMap({
+          map: 'world_mill_en',
+          backgroundColor: 'transparent',
+          zoomOnScroll: false,
+          series: {
+            regions: [{
+              values: gdpData,
+              scale: ['#E6F2F0', '#149B7E'],
+              normalizeFunction: 'polynomial'
+            }]
+          },
+          onRegionTipShow: function(e, el, code) {
+            el.html(el.html() + ' (GDP - ' + gdpData[code] + ')');
+          }
+        });
+      });
+    </script>
+    <!-- /jVectorMap -->
+
+    <!-- Skycons -->
+    <script>
+      $(document).ready(function() {
+        var icons = new Skycons({
+            "color": "#73879C"
+          }),
+          list = [
+            "clear-day", "clear-night", "partly-cloudy-day",
+            "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",
+            "fog"
+          ],
+          i;
+
+        for (i = list.length; i--;)
+          icons.set(list[i], list[i]);
+
+        icons.play();
+      });
+    </script>
+    <!-- /Skycons -->
+
+    <!-- Doughnut Chart -->
+    <script>
+      $(document).ready(function(){
+        var options = {
+          legend: false,
+          responsive: false
+        };
+
+        new Chart(document.getElementById("canvas1"), {
+          type: 'doughnut',
+          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+          data: {
+            labels: [
+              "Symbian",
+              "Blackberry",
+              "Other",
+              "Android",
+              "IOS"
+            ],
+            datasets: [{
+              data: [15, 20, 30, 10, 30],
+              backgroundColor: [
+                "#BDC3C7",
+                "#9B59B6",
+                "#E74C3C",
+                "#26B99A",
+                "#3498DB"
+              ],
+              hoverBackgroundColor: [
+                "#CFD4D8",
+                "#B370CF",
+                "#E95E4F",
+                "#36CAAB",
+                "#49A9EA"
+              ]
+            }]
+          },
+          options: options
+        });
+      });
+    </script>
+    <!-- /Doughnut Chart -->
+
+    <!-- bootstrap-daterangepicker -->
+    <script>
+      $(document).ready(function() {
+
+        var cb = function(start, end, label) {
+          console.log(start.toISOString(), end.toISOString(), label);
+          $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+        };
+
+        var optionSet1 = {
+          startDate: moment().subtract(29, 'days'),
+          endDate: moment(),
+          minDate: '01/01/2012',
+          maxDate: '12/31/2015',
+          dateLimit: {
+            days: 60
+          },
+          showDropdowns: true,
+          showWeekNumbers: true,
+          timePicker: false,
+          timePickerIncrement: 1,
+          timePicker12Hour: true,
+          ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
+          },
+          opens: 'left',
+          buttonClasses: ['btn btn-default'],
+          applyClass: 'btn-small btn-primary',
+          cancelClass: 'btn-small',
+          format: 'MM/DD/YYYY',
+          separator: ' to ',
+          locale: {
+            applyLabel: 'Submit',
+            cancelLabel: 'Clear',
+            fromLabel: 'From',
+            toLabel: 'To',
+            customRangeLabel: 'Custom',
+            daysOfWeek: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
+            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            firstDay: 1
+          }
+        };
+        $('#reportrange span').html(moment().subtract(29, 'days').format('MMMM D, YYYY') + ' - ' + moment().format('MMMM D, YYYY'));
+        $('#reportrange').daterangepicker(optionSet1, cb);
+        $('#reportrange').on('show.daterangepicker', function() {
+          console.log("show event fired");
+        });
+        $('#reportrange').on('hide.daterangepicker', function() {
+          console.log("hide event fired");
+        });
+        $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+          console.log("apply event fired, start/end dates are " + picker.startDate.format('MMMM D, YYYY') + " to " + picker.endDate.format('MMMM D, YYYY'));
+        });
+        $('#reportrange').on('cancel.daterangepicker', function(ev, picker) {
+          console.log("cancel event fired");
+        });
+        $('#options1').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet1, cb);
+        });
+        $('#options2').click(function() {
+          $('#reportrange').data('daterangepicker').setOptions(optionSet2, cb);
+        });
+        $('#destroy').click(function() {
+          $('#reportrange').data('daterangepicker').remove();
+        });
+      });
+    </script>
+    <!-- /bootstrap-daterangepicker -->
+
+    <!-- gauge.js -->
+    <script>
+      var opts = {
+          lines: 12,
+          angle: 0,
+          lineWidth: 0.4,
+          pointer: {
+              length: 0.75,
+              strokeWidth: 0.042,
+              color: '#1D212A'
+          },
+          limitMax: 'false',
+          colorStart: '#1ABC9C',
+          colorStop: '#1ABC9C',
+          strokeColor: '#F0F3F3',
+          generateGradient: true
+      };
+      var target = document.getElementById('foo'),
+          gauge = new Gauge(target).setOptions(opts);
+
+      gauge.maxValue = 6000;
+      gauge.animationSpeed = 32;
+      gauge.set(3200);
+      gauge.setTextField(document.getElementById("gauge-text"));
+    </script>
+    <!-- /gauge.js -->
+  </body>
+</html>

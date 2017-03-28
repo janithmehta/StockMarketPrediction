@@ -1,0 +1,27 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class = "right_col main_content col-md-offset-2">
+
+    <div>
+        <h1>Graph Here</h1>
+    </div>
+    <br>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Value</th>
+        </tr>
+        {% for value in predicted_values %}
+            <tr>
+                <td>{{ value.day }}</td>
+                <td>{{ value.value }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+</div>
+    
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class = "right_col main_content col-md-offset-2">
+
+    <div>
+        <h2>Choose a company</h2>
+        <form action="{% url 'selected_company' %}" method="post">
+            {% csrf_token %}
+            {% for company in companies_list %}
+                <input type="radio" id="company{{ forloop.counter }}" name="company" value="{{ company.value }}" /> <label for="company{{ forloop.counter }}">{{ company.name }}</label><br />
+            {% endfor %}
+            <input type="submit" class="btn btn-primary" value="See the Prediction">
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
