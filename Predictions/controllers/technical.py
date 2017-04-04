@@ -10,6 +10,18 @@ import numpy as np
 import matplotlib.pyplot as plt
 import datetime as dt
 
+companies_list = [
+        {'value':"AMBUJACEM", 'name':"Ambuja Cement"},
+        {'value':"ASIANPAINT", 'name':"Asian Paints"},
+        {'value':"BANKBARODA", 'name':"Bank Of Baroda"},
+        {'value':"HDIL", 'name':"Housing Develoopment & Infrastructure Ltd."},
+        {'value':"HEROMOTOCO", 'name':"Hero Motor Corporation"},
+        {'value':"HINDUNILVR", 'name':"Hindustan Unilever"},
+        {'value':"INFY", 'name':"Infosys"},
+        {'value':"ITC", 'name':"ITC"},
+        {'value':"MARUTI", 'name':"Maruti Suzuki Ltd."},
+        {'value':"TCS", 'name':"Tata Consultancy Services"},
+    ]
 
 
 def predict(company):
@@ -54,14 +66,23 @@ def predict(company):
     #
     #
     # print(predictions)
+    if company == "ITC":
 
-    predictions =  [
-    {'day':"Tomorrow", 'value':"58.55"},
-    {'day':"5 days later", 'value':"58.55"},
-    {'day':"10 days later", 'value':"58.55"},
-    {'day':"15 days later", 'value':"58.55"},
-    ]
-
+        predictions =  [
+        {'day':"Tomorrow", 'value':"58.55"},
+        {'day':"5 days later", 'value':"58.55"},
+        {'day':"10 days later", 'value':"58.55"},
+        {'day':"15 days later", 'value':"58.55"},
+        {'day':"20 days later", 'value':"68.55"},
+        ]
+    else:
+        predictions =  [
+        {'day':"Tomorrow", 'value':"48.55"},
+        {'day':"5 days later", 'value':"58.55"},
+        {'day':"10 days later", 'value':"58.55"},
+        {'day':"15 days later", 'value':"58.55"},
+        {'day':"20 days later", 'value':"68.55"},
+        ]
     return predictions
 
 def stock_prices(company):
@@ -91,6 +112,7 @@ def plot(company):
     dict1={'AMB':'ambuja2.csv','INFY':'infosys2.csv'}
     file_name = "csv/"+"ITC"+".csv"
     df = pd.read_csv(settings.MEDIA_ROOT + 'ITC.csv')
+    print(settings.STATICFILES_DIRS + "csv")
     # print(df.keys())
     # print(settings.MEDIA_ROOT)
     # df=df.replace([np.inf,-np.inf],np.nan)
@@ -112,14 +134,70 @@ def plot(company):
     print("plot")
 
 def recommend(amount):
-    amount = int(amount)
-    print(amount, type(amount))
-    suggestions = [
-        {'company_name':"AMBUJA", 'amount':'1000'},
-        {'company_name':"AMBUJA", 'amount':'1000'},
-        {'company_name':"AMBUJA", 'amount':'1000'}
-    ]
+    price_change = []
+
+    for commpany in companies_list:
+        temp = {}
+        predictions = predict(commpany['value'])
+        twenty_day = float((predictions[4]['value']))
+        next_day = float((predictions[0]['value']))
+        temp['company'] = commpany['value']
+        temp['change'] = twenty_day - next_day
+        price_change.append(temp)
+
+    sorted_price_change = sorted(price_change, key=lambda k: k['change'], reverse=True)
+
+    initial_seed = float(amount)
+    x_50=initial_seed*0.5
+    x_30=initial_seed*0.3
+    x_20=initial_seed*0.2
+
+    suggestions = []
+
+    if float(sorted_price_change[2]['change']) > 0:
+        for c in companies_list:
+            temp = {}
+            if c['value'] == sorted_price_change[0]['company']:
+                temp['company_name'] = c['name']
+                temp['amount'] = x_50
+                temp['profit'] = sorted_price_change[0]['change'] * x_50
+                suggestions.append(temp)
+            elif c['value'] == sorted_price_change[1]['company']:
+                temp['company_name'] = c['name']
+                temp['amount'] = x_30
+                temp['profit'] = sorted_price_change[1]['change'] * x_30
+                suggestions.append(temp)
+            elif c['value'] == sorted_price_change[2]['company']:
+                temp['company_name'] = c['name']
+                temp['amount'] = x_20
+                temp['profit'] = sorted_price_change[2]['change'] * x_20
+                suggestions.append(temp)
+    elif float(sorted_price_change[1]['change']) > 0 and float(sorted_price_change[2]['change']) <= 0:
+        for c in companies_list:
+            temp = {}
+            if c['value'] == sorted_price_change[0]['company']:
+                temp['company_name'] = c['name']
+                temp['amount'] = x_50
+                temp['profit'] = sorted_price_change[0]['change'] * x_50
+                suggestions.append(temp)
+            elif c['value'] == sorted_price_change[1]['company']:
+                temp['company_name'] = c['name']
+                temp['amount'] = x_30
+                temp['profit'] = sorted_price_change[1]['change'] * x_30
+                suggestions.append(temp)
+    elif float(sorted_price_change[1]['change']) <= 0 and float(sorted_price_change[2]['change']) <= 0:
+        for c in companies_list:
+            temp = {}
+            if c['value'] == sorted_price_change[0]['company']:
+                temp['company_name'] = c['name']
+                temp['amount'] = x_50
+                temp['profit'] = sorted_price_change[0]['change'] * x_50
+                suggestions.append(temp)
+    elif float(sorted_price_change[0]['change']) < 0:
+        temp = {}
+        temp['company_name'] = "Don't Invest"
+        temp['amount'] = 0
+        temp['profit'] = "negative"
+        suggestions.append(temp)
+
     return suggestions
-#predict("AMB")
-#stock_prices("AMB")
-# plot("AMBUJACEM")
