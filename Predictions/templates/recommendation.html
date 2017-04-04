@@ -26,10 +26,16 @@
             <div class="x_content">
                 {% if suggestions != None %}
                 <table class="table">
+                    <tr>
+                        <th>Company</th>
+                        <th>Amount</th>
+                        <th>Profit</th>
+                    </tr>
                     {% for suggestion in suggestions %}
                         <tr>
                             <td>{{ suggestion.company_name }}</td>
                             <td>{{ suggestion.amount }}</td>
+                            <td>{{ suggestion.profit }}</td>
                         </tr>
                     {% endfor %}
                 </table>
