@@ -3,3 +3,6 @@
 .idea/misc.xml
 .idea/
 .idea/workspace.xml
+
+*.pyc
+*.pyo
