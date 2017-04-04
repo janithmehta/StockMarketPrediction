@@ -12,5 +12,6 @@ Installation Guide :-
 User Guide :-
 1. Open the xampp console and start the 'Apache' server
 2. Go to the folder where the project is cloned
-3. Run the following command - python manage.py runserver 9000 (The server will start on port 9000)
-4. Open your default browser and go to - 'http://localhost:9000/'
+3. Open the command line window (Shift + Right click)
+4. Run the following command - python manage.py runserver 9000 (The server will start on port 9000)
+5. Open your default browser and go to - 'http://localhost:9000/'
