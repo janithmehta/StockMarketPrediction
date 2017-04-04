@@ -1,27 +1,106 @@
 {% extends 'index.html' %}
 
+{% load static %}
+
 {% block content %}
 
+<!-- page content -->
+<div class = "right_col" role="main">
 
-<div class = "right_col main_content col-md-offset-2">
-
-    <div>
-        <h1>Graph Here</h1>
+    <div class="row tile_count">
+        <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
+            <span class="count_top">{{ company_latest.name }}</span>
+            <div class="count">{{ company_latest.price }}</div>
+            <span class="count_bottom">
+                {% if company_latest.change == "-" %}
+                    <i class="red"><i class="fa fa-sort-desc"></i>{{ company_latest.change_price }} </i>
+                {% else %}
+                    <i class="green"><i class="fa fa-sort-asc"></i>{{ company_latest.change_price }} </i>
+                {% endif %}
+            </span>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="dashboard_graph">
+                <div class="row x_title">
+                    <div class="col-md-6">
+                        <h3>Stock Price <small></small></h3>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
+                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+                            <span>October 28, 2013 - January 27, 2016</span> <b class="caret"></b>
+                        </div>
+                    </div>
+               </div>
+                <div class="col-md-9 col-sm-9 col-xs-12">
+                    <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
+                    <div style="width: 100%;">
+                        <div class="demo-placeholder" style="width: 100%; height:330px;">
+                              <img src="{% static 'img/prices.png' %}" width=30%>
+{#                            <div id="line-example" style="width: 100%"></div>#}
+                              <!--  <script>
+                                    Morris.Line({
+                                  element: 'line-example',
+                                  data: [
+                                    { y: '2006', a: 100, b: 90 },
+                                    { y: '2007', a: 75,  b: 65 },
+                                    { y: '2008', a: 50,  b: 40 },
+                                    { y: '2009', a: 75,  b: 65 },
+                                    { y: '2010', a: 50,  b: 40 },
+                                    { y: '2011', a: 75,  b: 65 },
+                                    { y: '2012', a: 100, b: 90 }
+                                  ],
+                                  xkey: 'day',
+                                  ykey: 'value',
+                                  labels: ['Series A', 'Series B']
+                                });
+                               </script> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
     <br>
-    <table>
-        <tr>
-            <th>Day</th>
-            <th>Value</th>
-        </tr>
-        {% for value in predicted_values %}
-            <tr>
-                <td>{{ value.day }}</td>
-                <td>{{ value.value }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+
+    <div class="col-md-6 col-sm-4 col-xs-12 col-md-offset-3">
+        <div class="x_panel tile fixed_height_320" style="margin-top: 5%">
+            <div class="x_title">
+                <h2>Our Predictions</h2>
+                <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>#}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div>
+                    <table class="table">
+                        <tr>
+                            <th>Day</th>
+                            <th>Value</th>
+                        </tr>
+                        {% for value in predicted_values %}
+                            <tr>
+                                <td>{{ value.day }}</td>
+                                <td>{{ value.value }}</td>
+                            </tr>
+
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
 
 </div>
     
 {% endblock %}
+

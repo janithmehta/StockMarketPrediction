@@ -1,0 +1,19 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+
+<div class = "right_col main_content col-md-offset-2" role="main">
+
+    <div>
+        <h3>Last date updated was: {{ last_updated_date }}</h3>
+    </div>
+    <div>
+        <form method="post" action="{% url 'update' %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-primary" name="confirm" value="Update">
+        </form>
+    </div>
+</div>
+    
+{% endblock %}

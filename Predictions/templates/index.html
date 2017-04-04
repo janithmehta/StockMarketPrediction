@@ -59,12 +59,12 @@
 
             <!-- menu profile quick info -->
             <div class="profile">
-              <div class="profile_pic">
-                <img src="images/img.jpg" alt="..." class="img-circle profile_img">
-              </div>
+{#              <div class="profile_pic">#}
+{#                <img src="images/img.jpg" alt="..." class="img-circle profile_img">#}
+{#              </div>#}
               <div class="profile_info">
-                <span>Welcome,</span>
-                <h2>Janit Mehta</h2>
+                <span>Welcome</span>
+{#                <h2>Janit Mehta</h2>#}
               </div>
             </div>
             <!-- /menu profile quick info -->
@@ -74,19 +74,21 @@
             <!-- sidebar menu -->
             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
               <div class="menu_section">
-                <h3>Prediction Modules</h3>
+                <h3>To the Stock Market </h3>
                 <ul class="nav side-menu">
-                  <li><a><i class="fa fa-home"></i> Technical Analysis <span class="fa fa-chevron-right"></span></a>
-                    <ul class="nav child_menu">
-                      <li><a href="ambuja.html">Ambuja Cement</a></li>
-                      <li><a href="hdil.html">HDIL</a></li>
-                      <li><a href="bob.html">Bank Of Baroda</a></li>
-                      <li><a href="asian.html">Asian Paints</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="fundamental.html"><i class="fa fa-edit"></i> Fundamental Analysis <span class="fa fa-chevron-right"></span></a>
-                  </li>
-
+{#                  <li><a><i class="fa fa-home"></i> Technical Analysis <span class="fa fa-chevron-right"></span></a>#}
+{#                    <ul class="nav child_menu">#}
+{#                      <li><a href="ambuja.html">Ambuja Cement</a></li>#}
+{#                      <li><a href="hdil.html">HDIL</a></li>#}
+{#                      <li><a href="bob.html">Bank Of Baroda</a></li>#}
+{#                      <li><a href="asian.html">Asian Paints</a></li>#}
+{#                    </ul>#}
+{#                  </li>#}
+{#                  <li><a href="fundamental.html"><i class="fa fa-edit"></i> Fundamental Analysis <span class="fa fa-chevron-right"></span></a>#}
+{#                  </li>#}
+                    <li><a href="{% url 'companies' %}"><i class="fa fa-edit"></i> Predict <span class="fa fa-chevron-right"></span></a></li>
+                    <li><a href="{% url 'recommendation' %}"><i class="fa fa-edit"></i> Recommend <span class="fa fa-chevron-right"></span></a></li>
+                    <li><a href="{% url 'update' %}"><i class="fa fa-edit"></i> Update <span class="fa fa-chevron-right"></span></a></li>
                 </ul>
               </div>
 
@@ -94,20 +96,20 @@
             <!-- /sidebar menu -->
 
             <!-- /menu footer buttons -->
-            <div class="sidebar-footer hidden-small">
-              <a data-toggle="tooltip" data-placement="top" title="Settings">
-                <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Lock">
-                <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-              </a>
-              <a data-toggle="tooltip" data-placement="top" title="Logout">
-                <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-              </a>
-            </div>
+{#            <div class="sidebar-footer hidden-small">#}
+{#              <a data-toggle="tooltip" data-placement="top" title="Janit">#}
+{#                <a href="https://www.linkedin.com/in/janit-mehta-693b249a/"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>#}
+{#              </a>#}
+{#              <a data-toggle="tooltip" data-placement="top" title="Harshad">#}
+{#                <a href=""><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></a>#}
+{#              </a>#}
+{#              <a data-toggle="tooltip" data-placement="top" title="Advik">#}
+{#                <a href=""><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>#}
+{#              </a>#}
+{#              <a data-toggle="tooltip" data-placement="top" title="Sahaj">#}
+{#                <a href="http:"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>#}
+{#              </a>#}
+{#            </div>#}
             <!-- /menu footer buttons -->
           </div>
         </div>
@@ -120,25 +122,25 @@
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
               </div>
 
-              <ul class="nav navbar-nav navbar-right">
-                <li class="">
-                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                    <img src="images/img.jpg" alt="">Janit Mehta
-                    <span class=" fa fa-angle-down"></span>
-                  </a>
-                  <ul class="dropdown-menu dropdown-usermenu pull-right">
-                    <li><a href="javascript:;"> Profile</a></li>
-                    <li>
-                      <a href="javascript:;">
-                        <span class="badge bg-red pull-right">50%</span>
-                        <span>Settings</span>
-                      </a>
-                    </li>
-                    <li><a href="javascript:;">Help</a></li>
-                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-                  </ul>
-                </li>
-              </ul>
+{#              <ul class="nav navbar-nav navbar-right">#}
+{#                <li class="">#}
+{#                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">#}
+{#                    <img src="images/img.jpg" alt="">Janit Mehta#}
+{#                    <span class=" fa fa-angle-down"></span>#}
+{#                  </a>#}
+{#                  <ul class="dropdown-menu dropdown-usermenu pull-right">#}
+{#                    <li><a href="javascript:;"> Profile</a></li>#}
+{#                    <li>#}
+{#                      <a href="javascript:;">#}
+{#                        <span class="badge bg-red pull-right">50%</span>#}
+{#                        <span>Settings</span>#}
+{#                      </a>#}
+{#                    </li>#}
+{#                    <li><a href="javascript:;">Help</a></li>#}
+{#                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>#}
+{#                  </ul>#}
+{#                </li>#}
+{#              </ul>#}
             </nav>
           </div>
         </div>
@@ -435,7 +437,6 @@
         <!-- /footer content -->
       </div>
     </div>
-
     <!-- jQuery -->
     <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
     <!-- Bootstrap -->
@@ -445,7 +446,7 @@
     <!-- NProgress -->
     <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
     <!-- Chart.js -->
-    <script src="{% static 'vendors/Chart.js/dist/Chart.min.js' %}"></script>
+{#    <script src="{% static 'vendors/Chart.js/dist/Chart.min.js' %}"></script>#}
     <!-- gauge.js -->
     <script src="{% static 'vendors/bernii/gauge.js/dist/gauge.min.js' %}"></script>
     <!-- bootstrap-progressbar -->
@@ -461,19 +462,19 @@
     <script src="{% static 'vendors/Flot/jquery.flot.stack.js' %}"></script>
     <script src="{% static 'vendors/Flot/jquery.flot.resize.js' %}"></script>
     <!-- Flot plugins -->
-    <script src="js/flot/jquery.flot.orderBars.js' %}"></script>
-    <script src="js/flot/date.js' %}"></script>
-    <script src="js/flot/jquery.flot.spline.js' %}"></script>
-    <script src="js/flot/curvedLines.js' %}"></script>
+    <script src="{% static 'js/flot/jquery.flot.orderBars.js' %}"></script>
+    <script src="{% static 'js/flot/date.js' %}"></script>
+    <script src="{% static 'js/flot/jquery.flot.spline.js' %}"></script>
+    <script src="{% static 'js/flot/curvedLines.js' %}"></script>
     <!-- jVectorMap -->
-    <script src="js/maps/jquery-jvectormap-2.0.3.min.js' %}"></script>
+    <script src="{% static 'js/maps/jquery-jvectormap-2.0.3.min.js' %}"></script>
     <!-- bootstrap-daterangepicker -->
-    <script src="js/moment/moment.min.js' %}"></script>
-    <script src="js/datepicker/daterangepicker.js' %}"></script>
+    <script src="{% static 'js/moment/moment.min.js' %}"></script>
+    <script src="{% static 'js/datepicker/daterangepicker.js' %}"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
-
+    <script src="{% static 'js/morris.js' %}"></script>
     <!-- Flot -->
     <script>
       $(document).ready(function() {

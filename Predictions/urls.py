@@ -11,6 +11,8 @@ urlpatterns = [
     url(r'^selected_company/$', 'Predictions.views.selected_company', name='selected_company'),
     url(r'^fundamental_analysis/(?P<company>[A-Z]+$)', 'Predictions.views.fundamental', name='fundamental'),
     url(r'^technical_analysis/(?P<company>[A-Z]+$)', 'Predictions.views.technical', name='technical'),
+    url(r'^recommendation/$', 'Predictions.views.recommendation', name='recommendation'),
+    url(r'^update/$', 'Predictions.views.update', name='update'),
 
 
 ]
