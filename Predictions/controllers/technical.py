@@ -177,17 +177,17 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                temp['profit'] = sorted_price_change[0]['change'] * x_50
+                temp['profit'] = (sorted_price_change[0]['change'] * x_50)/100
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[1]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_30
-                temp['profit'] = sorted_price_change[1]['change'] * x_30
+                temp['profit'] = (sorted_price_change[1]['change'] * x_30)/100
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[2]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_20
-                temp['profit'] = sorted_price_change[2]['change'] * x_20
+                temp['profit'] = (sorted_price_change[2]['change'] * x_20)/100
                 suggestions.append(temp)
     elif float(sorted_price_change[1]['change']) > 0 and float(sorted_price_change[2]['change']) <= 0:
         for c in companies_list:
@@ -195,12 +195,12 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                temp['profit'] = sorted_price_change[0]['change'] * x_50
+                temp['profit'] = (sorted_price_change[0]['change'] * x_50)/100
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[1]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_30
-                temp['profit'] = sorted_price_change[1]['change'] * x_30
+                temp['profit'] = (sorted_price_change[1]['change'] * x_30)/100
                 suggestions.append(temp)
     elif float(sorted_price_change[1]['change']) <= 0 and float(sorted_price_change[2]['change']) <= 0:
         for c in companies_list:
@@ -208,7 +208,7 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                temp['profit'] = sorted_price_change[0]['change'] * x_50
+                temp['profit'] = (sorted_price_change[0]['change'] * x_50)/100
                 suggestions.append(temp)
     elif float(sorted_price_change[0]['change']) < 0:
         temp = {}
