@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from datetime import datetime
 
 from Predictions.controllers import fundamental as fund
 from Predictions.controllers import technical as tech
@@ -49,6 +50,7 @@ def recommendation(request):
     return render(request,  "recommendation.html", context={'suggestions':suggestions})
 
 def update(request):
+    print(datetime.now())
     last_updated_date = up.get_last_updated_data()
     if request.POST:
         print("Enter")

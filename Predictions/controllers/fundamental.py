@@ -33,7 +33,7 @@ def predict(company):
              'ev_by_net_operating_revenue',
              'market_cap_by_net_operating_revenue']
              #'retention_ratios']
-    data_df = pd.DataFrame.from_csv("xyzc2.csv")
+    data_df = pd.DataFrame.from_csv(settings.MEDIA_ROOT + 'fundamental.csv')
     X = np.array(data_df[FEATURES].values)
     y = (data_df["status"].values)
     X = preprocessing.scale(X)

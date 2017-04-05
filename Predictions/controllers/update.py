@@ -4,6 +4,7 @@ import statistics as st
 from datetime import date
 from pprint import pprint
 import numpy as np
+from django.conf import settings
 def update_one(company):
 	da=date.today()
 	#comp="NSE/BANKBARODA"
@@ -15,8 +16,8 @@ def update_one(company):
 	# print(list(x))
 	row = pd.DataFrame([[da,x[comp+' - Open'][0],x[comp+' - High'][0],x[comp+' - Low'][0],x[comp+' - Close'][0],x[comp+' - Total Trade Quantity'][0],0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
 	print(row)
-
-	with open(file_name, 'a') as f:
+	k=settings.MEDIA_ROOT+file_name
+	with open(k, 'a') as f:
 	    row.to_csv(f, header=False)
 	#df = pd.read_csv(settings.MEDIA_ROOT + name)
 	ds=pd.read_csv(settings.MEDIA_ROOT+file_name)
@@ -415,7 +416,7 @@ def update_one(company):
 			d20+=df['K20'][i+j]
 		d20=d20/20
 		df['X24'][i]=(df['K20'][i]-d20-50)/50
-		print("loop2")
+		print("Loop2")
 
 	for i in range(20,40):
 		df['Next Day Price']=df['Close'][i-1]
@@ -436,7 +437,7 @@ def update_one(company):
 
 
 def update():
-    list1=['AMBUJACEM','ASIANPAINT','BANKBARODA','HDIL','ITC']
+    list1=['AMBUJACEM','ASIANPAINT','BANKBARODA']
     for i in list1:
     	update_one(i)
     print('Updated Successfully!')
@@ -445,4 +446,7 @@ def update():
     
 
 def get_last_updated_data():
-    return '23-3-2017'
+        file_name='AMBUJACEM'+'.csv'
+        ds=pd.read_csv(settings.MEDIA_ROOT+file_name)
+        x=ds['Date'][len(ds)-1]
+        return x
