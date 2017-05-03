@@ -160,6 +160,7 @@ def recommend(amount):
         next_day = float((predictions[0]['value']))
         temp['company'] = commpany['value']
         temp['change'] = twenty_day - next_day
+        temp['curr']=next_day
         price_change.append(temp)
 
     sorted_price_change = sorted(price_change, key=lambda k: k['change'], reverse=True)
@@ -168,7 +169,9 @@ def recommend(amount):
     x_50=initial_seed*0.5
     x_30=initial_seed*0.3
     x_20=initial_seed*0.2
-
+    val1=int(x_50/sorted_price_change[0]['curr'])
+    val2=int(x_30/sorted_price_change[1]['curr'])
+    val3=int(x_20/sorted_price_change[1]['curr'])
     suggestions = []
 
     if float(sorted_price_change[2]['change']) > 0:
@@ -177,17 +180,20 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                temp['profit'] = (sorted_price_change[0]['change'] * x_50)/100
+                temp['number_of_stocks']=val1        
+                temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[1]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_30
-                temp['profit'] = (sorted_price_change[1]['change'] * x_30)/100
+                temp['amount'] = x_30            
+                temp['number_of_stocks']=val2 
+                temp['profit'] = (sorted_price_change[1]['change'] * val2)
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[2]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_20
-                temp['profit'] = (sorted_price_change[2]['change'] * x_20)/100
+                temp['number_of_stocks']=val3 
+                temp['profit'] = (sorted_price_change[2]['change'] * val3)
                 suggestions.append(temp)
     elif float(sorted_price_change[1]['change']) > 0 and float(sorted_price_change[2]['change']) <= 0:
         for c in companies_list:
@@ -195,12 +201,14 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                temp['profit'] = (sorted_price_change[0]['change'] * x_50)/100
+                temp['number_of_stocks']=val1
+                temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[1]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_30
-                temp['profit'] = (sorted_price_change[1]['change'] * x_30)/100
+                temp['number_of_stocks']=val2 
+                temp['profit'] = (sorted_price_change[1]['change'] * val2)
                 suggestions.append(temp)
     elif float(sorted_price_change[1]['change']) <= 0 and float(sorted_price_change[2]['change']) <= 0:
         for c in companies_list:
@@ -208,7 +216,8 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                temp['profit'] = (sorted_price_change[0]['change'] * x_50)/100
+                emp['number_of_stocks']=val1 
+                temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
     elif float(sorted_price_change[0]['change']) < 0:
         temp = {}
