@@ -6,6 +6,7 @@ Installation Guide :-
 1. Install Anaconda 3 ( https://www.continuum.io/downloads ) 
 2. Make sure that Anaconda has been added to your path variables ( for windows )
 3. Open your command line and install numpy, scikit-learn, django(v1.8), matplotlib and pandas using pip
+4. Install quandl using pip.
 4. Install xampp ( https://www.apachefriends.org/download.html )
 5. Clone the repository
 
