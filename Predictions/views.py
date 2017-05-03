@@ -28,19 +28,20 @@ def companies(request):
 
 def selected_company(request):
     company = request.POST['company']
-    return redirect('../fundamental_analysis/' + company)
+    return redirect('../technical_analysis/' + company)
 
-def fundamental(request, company):
+def fundamental(company):
     investible = fund.predict(company)
-    return render(request, "fundamental.html", context={'investible':investible, 'company': company})
+    return investible
 
 def technical(request, company):
     predicted_values = tech.predict(company)
     stock_prices = tech.stock_prices(company)
     company_latest = tech.company_latest(company)
+    investible = fundamental(company)
     print(stock_prices)
     # tech.plot(company)
-    return render(request, "technical.html", context={'predicted_values':predicted_values, 'stock_prices':stock_prices, 'company_latest':company_latest})
+    return render(request, "technical.html", context={'predicted_values':predicted_values, 'stock_prices':stock_prices, 'company_latest':company_latest, 'investible': investible})
 
 def recommendation(request):
     suggestions = []
