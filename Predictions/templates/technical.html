@@ -81,6 +81,13 @@
             </div>
             <div class="x_content">
                 <div>
+                    {% if investible == 1 %}
+                        <h2 style="color: #00CC33">It's a Good Investment! :)</h2>
+                    {% else %}
+                        <h2 style="color: #942a25">Geez! Beware of this company</h2>
+                    {% endif %}
+                </div>
+                <div>
                     <table class="table">
                         <tr>
                             <th>Day</th>
