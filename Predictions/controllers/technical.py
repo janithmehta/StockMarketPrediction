@@ -23,6 +23,18 @@ companies_list = [
         {'value':"TCS", 'name':"Tata Consultancy Services"},
     ]
 
+company_namees = {
+        "AMBUJACEM":"Ambuja Cement",
+        "ASIANPAINT" :"Asian Paints",
+        "BANKBARODA" :"Bank Of Baroda",
+        "HDIL" :"Housing Develoopment & Infrastructure Ltd.",
+        "HEROMOTOCO" :"Hero Motor Corporation",
+        "HINDUNILVR" :"Hindustan Unilever",
+        "INFY" :"Infosys",
+        "ITC" :"ITC",
+        "MARUTI" :"Maruti Suzuki Ltd.",
+        "TCS" :"Tata Consultancy Services"
+    }
 
 def predict(company):
     #Enter the prediction here, you will be getting the company code as input Eg: TCS,INFY,HEROMOTOCO
@@ -56,7 +68,6 @@ def predict(company):
     df=df.dropna()
     predictions=[]
     list_index=['Next Day Price','5 Day Price','10 Day Price','15 Day Price','20 Day Price']
-    
     for h in list_index:
         X = np.array(df[FEATURES].values)
         y = (df[h].values)
@@ -102,7 +113,7 @@ def stock_prices(company):
 
 def company_latest(company):
     #details = {'name': "AMNUJA CEMENTS", 'price':"222.5", 'change': "+", 'change_price':"22.5"}
-    details={'name':"",'price':"",'change':"","change_price":""}
+    details={'name':"",'price':"",'change':"","change_price":"","stock_name":""}
     name=company+".csv"
     #df=pd.DataFrame.from_csv(name)
     df = pd.read_csv(settings.MEDIA_ROOT + name)
@@ -119,7 +130,9 @@ def company_latest(company):
         sign="+"
     elif(p1-p2<0):
         sign="-"
-    details['name']=company
+
+    details['name']=company_namees[company]
+    details['stock_name']=company+".NS"
     details['price']=p1
     details['change']=sign
     details['change_price']=diff
@@ -216,7 +229,7 @@ def recommend(amount):
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
                 temp['amount'] = x_50
-                emp['number_of_stocks']=val1 
+                temp['number_of_stocks']=val1
                 temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
     elif float(sorted_price_change[0]['change']) < 0:
