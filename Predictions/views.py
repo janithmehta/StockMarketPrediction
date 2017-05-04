@@ -39,9 +39,9 @@ def technical(request, company):
     stock_prices = tech.stock_prices(company)
     company_latest = tech.company_latest(company)
     investible = fundamental(company)
+    company_stock_data = tech.stock_prices(company)
     print(stock_prices)
-    # tech.plot(company)
-    return render(request, "technical.html", context={'predicted_values':predicted_values, 'stock_prices':stock_prices, 'company_latest':company_latest, 'investible': investible})
+    return render(request, "technical.html", context={'predicted_values':predicted_values, 'stock_prices':stock_prices, 'company_latest':company_latest, 'investible': investible, 'company_stock_data':company_stock_data})
 
 def recommendation(request):
     suggestions = []

@@ -52,7 +52,7 @@
         <div class="col-md-3 left_col">
           <div class="left_col scroll-view">
             <div class="navbar nav_title" style="border: 0;">
-              <a href="index.html" class="site_title"><i class="fa fa-line-chart"></i> <span>Stock Market Prediction</span></a>
+              <a href="{% url 'index' %}" class="site_title"><i class="fa fa-line-chart"></i> <span>Stock Market Prediction</span></a>
             </div>
 
             <div class="clearfix"></div>
@@ -147,7 +147,7 @@
         <!-- /top navigation -->
 
         <!-- page content -->
-        {% block content %}
+{#        {% block content %}#}
 {#        <div class="right_col" role="main">#}
 {#          <!-- top tiles -->#}
 {#          <div class="row tile_count">#}
@@ -418,25 +418,25 @@
 {#            </div>#}
 {#          </div>#}
 {#        </div>#}
-          <div class="right_col main_content">
-            <h2>Welcome to Stock Market Prediction</h2>
-            <div>
-                <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>
-            </div>
-          </div>
-        {% endblock %}
-        <!-- /page content -->
-
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
-      </div>
-    </div>
+{#          <div class="right_col main_content">#}
+{#            <h2>Welcome to Stock Market Prediction</h2>#}
+{#            <div>#}
+{#                <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>#}
+{#            </div>#}
+{#          </div>#}
+{#        {% endblock %}#}
+{#        <!-- /page content -->#}
+{##}
+{#        <!-- footer content -->#}
+{#        <footer>#}
+{#          <div class="pull-right">#}
+{#            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>#}
+{#          </div>#}
+{#          <div class="clearfix"></div>#}
+{#        </footer>#}
+{#        <!-- /footer content -->#}
+{#      </div>#}
+{#    </div>#}
     <!-- jQuery -->
     <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
     <!-- Bootstrap -->
@@ -474,7 +474,9 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'build/js/custom.min.js' %}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="{% static 'js/morris.js' %}"></script>
+{#    <script src="http://cdn.oesmith.co.uk/morris-0.4.1.min.js"></script>#}
     <!-- Flot -->
     <script>
       $(document).ready(function() {
@@ -597,48 +599,48 @@
     </script>
     <!-- /Skycons -->
 
-    <!-- Doughnut Chart -->
-    <script>
-      $(document).ready(function(){
-        var options = {
-          legend: false,
-          responsive: false
-        };
-
-        new Chart(document.getElementById("canvas1"), {
-          type: 'doughnut',
-          tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-          data: {
-            labels: [
-              "Symbian",
-              "Blackberry",
-              "Other",
-              "Android",
-              "IOS"
-            ],
-            datasets: [{
-              data: [15, 20, 30, 10, 30],
-              backgroundColor: [
-                "#BDC3C7",
-                "#9B59B6",
-                "#E74C3C",
-                "#26B99A",
-                "#3498DB"
-              ],
-              hoverBackgroundColor: [
-                "#CFD4D8",
-                "#B370CF",
-                "#E95E4F",
-                "#36CAAB",
-                "#49A9EA"
-              ]
-            }]
-          },
-          options: options
-        });
-      });
-    </script>
-    <!-- /Doughnut Chart -->
+{#    <!-- Doughnut Chart -->#}
+{#    <script>#}
+{#      $(document).ready(function(){#}
+{#        var options = {#}
+{#          legend: false,#}
+{#          responsive: false#}
+{#        };#}
+{##}
+{#        new Chart(document.getElementById("canvas1"), {#}
+{#          type: 'doughnut',#}
+{#          tooltipFillColor: "rgba(51, 51, 51, 0.55)",#}
+{#          data: {#}
+{#            labels: [#}
+{#              "Symbian",#}
+{#              "Blackberry",#}
+{#              "Other",#}
+{#              "Android",#}
+{#              "IOS"#}
+{#            ],#}
+{#            datasets: [{#}
+{#              data: [15, 20, 30, 10, 30],#}
+{#              backgroundColor: [#}
+{#                "#BDC3C7",#}
+{#                "#9B59B6",#}
+{#                "#E74C3C",#}
+{#                "#26B99A",#}
+{#                "#3498DB"#}
+{#              ],#}
+{#              hoverBackgroundColor: [#}
+{#                "#CFD4D8",#}
+{#                "#B370CF",#}
+{#                "#E95E4F",#}
+{#                "#36CAAB",#}
+{#                "#49A9EA"#}
+{#              ]#}
+{#            }]#}
+{#          },#}
+{#          options: options#}
+{#        });#}
+{#      });#}
+{#    </script>#}
+{#    <!-- /Doughnut Chart -->#}
 
     <!-- bootstrap-daterangepicker -->
     <script>
@@ -714,31 +716,52 @@
     </script>
     <!-- /bootstrap-daterangepicker -->
 
-    <!-- gauge.js -->
-    <script>
-      var opts = {
-          lines: 12,
-          angle: 0,
-          lineWidth: 0.4,
-          pointer: {
-              length: 0.75,
-              strokeWidth: 0.042,
-              color: '#1D212A'
-          },
-          limitMax: 'false',
-          colorStart: '#1ABC9C',
-          colorStop: '#1ABC9C',
-          strokeColor: '#F0F3F3',
-          generateGradient: true
-      };
-      var target = document.getElementById('foo'),
-          gauge = new Gauge(target).setOptions(opts);
+{#    <!-- gauge.js -->#}
+{#    <script>#}
+{#      var opts = {#}
+{#          lines: 12,#}
+{#          angle: 0,#}
+{#          lineWidth: 0.4,#}
+{#          pointer: {#}
+{#              length: 0.75,#}
+{#              strokeWidth: 0.042,#}
+{#              color: '#1D212A'#}
+{#          },#}
+{#          limitMax: 'false',#}
+{#          colorStart: '#1ABC9C',#}
+{#          colorStop: '#1ABC9C',#}
+{#          strokeColor: '#F0F3F3',#}
+{#          generateGradient: true#}
+{#      };#}
+{#      var target = document.getElementById('foo'),#}
+{#          gauge = new Gauge(target).setOptions(opts);#}
+{##}
+{#      gauge.maxValue = 6000;#}
+{#      gauge.animationSpeed = 32;#}
+{#      gauge.set(3200);#}
+{#      gauge.setTextField(document.getElementById("gauge-text"));#}
+{#    </script>#}
+{#    <!-- /gauge.js -->#}
 
-      gauge.maxValue = 6000;
-      gauge.animationSpeed = 32;
-      gauge.set(3200);
-      gauge.setTextField(document.getElementById("gauge-text"));
-    </script>
-    <!-- /gauge.js -->
+    {% block content %}
+    <div class="right_col main_content">
+            <h2>Welcome to Stock Market Prediction</h2>
+            <div>
+                <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>
+            </div>
+          </div>
+        {% endblock %}
+        <!-- /page content -->
+
+        <!-- footer content -->
+        <footer>
+          <div class="pull-right">
+            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>
+          </div>
+          <div class="clearfix"></div>
+        </footer>
+        <!-- /footer content -->
+      </div>
+    </div>
   </body>
 </html>
