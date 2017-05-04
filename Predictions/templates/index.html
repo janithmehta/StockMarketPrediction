@@ -20,423 +20,74 @@
     <link href="{% static 'build/css/custom.min.css' %}" rel="stylesheet">
 
 </head>
-{#<body>#}
-{##}
-{#    <nav class="navbar navbar-inverse">#}
-{#      <div class="container-fluid">#}
-{#        <div class="navbar-header">#}
-{#          <a class="navbar-brand" href="/">WebsiteTracker</a>#}
-{#        </div>#}
-{#        <ul class="nav navbar-nav">#}
-{#          <li><a href="/">Home</a></li>#}
-{#            {% block navigation %}#}
-{#                <li><a href="/acccounts/login">Login</a></li>#}
-{#                <li><a href="/accoutns/register">Register</a></li>#}
-{#          {% endblock %}#}
-{#        </ul>#}
-{#      </div>#}
-{#    </nav>#}
-{##}
-{#    <div class="container-fluid">#}
-{#        <div class="col-md-6 col-md-offset-4">#}
-{#            {% block content %}<h1>Welcome to Website Tracking</h1>{% endblock %}#}
-{#        </div>#}
-{#    </div>#}
-{##}
-{#</body>#}
-{#</html>#}
 
 <body class="nav-md">
     <div class="container body">
-      <div class="main_container">
-        <div class="col-md-3 left_col">
-          <div class="left_col scroll-view">
-            <div class="navbar nav_title" style="border: 0;">
-              <a href="{% url 'index' %}" class="site_title"><i class="fa fa-line-chart"></i> <span>Stock Market Prediction</span></a>
+        <div class="main_container">
+            <div class="col-md-3 left_col">
+                <div class="left_col scroll-view">
+                    <div class="navbar nav_title" style="border: 0;">
+                        <a href="{% url 'index' %}" class="site_title"><i class="fa fa-line-chart"></i> <span>Stock Market Prediction</span></a>
+                    </div>
+                    <div class="clearfix"></div>
+                    <!-- menu profile quick info -->
+                    <div class="profile">
+                        <div class="profile_info">
+                            <span>Welcome</span>
+                        </div>
+                    </div>
+                    <!-- /menu profile quick info -->
+                    <br />
+                    <!-- sidebar menu -->
+                    <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
+                        <div class="menu_section">
+                            <h3>To the Stock Market </h3>
+                            <ul class="nav side-menu">
+                                <li><a href="{% url 'companies' %}"><i class="fa fa-bar-chart"></i> Predict <span class="fa fa-chevron-right"></span></a></li>
+                                <li><a href="{% url 'recommendation' %}"><i class="fa fa-money"></i> Recommend <span class="fa fa-chevron-right"></span></a></li>
+                                <li><a href="{% url 'update' %}"><i class="fa fa-refresh"></i> Update <span class="fa fa-chevron-right"></span></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /sidebar menu -->
+                </div>
             </div>
 
-            <div class="clearfix"></div>
-
-            <!-- menu profile quick info -->
-            <div class="profile">
-{#              <div class="profile_pic">#}
-{#                <img src="images/img.jpg" alt="..." class="img-circle profile_img">#}
-{#              </div>#}
-              <div class="profile_info">
-                <span>Welcome</span>
-{#                <h2>Janit Mehta</h2>#}
-              </div>
+            <!-- top navigation -->
+            <div class="top_nav">
+                <div class="nav_menu">
+                    <nav class="" role="navigation">
+                        <div class="nav toggle">
+                            <a id="menu_toggle"><i class="fa fa-bars"></i></a>
+                        </div>
+                    </nav>
+                </div>
             </div>
-            <!-- /menu profile quick info -->
+            <!-- /top navigation -->
 
-            <br />
-
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <h3>To the Stock Market </h3>
-                <ul class="nav side-menu">
-{#                  <li><a><i class="fa fa-home"></i> Technical Analysis <span class="fa fa-chevron-right"></span></a>#}
-{#                    <ul class="nav child_menu">#}
-{#                      <li><a href="ambuja.html">Ambuja Cement</a></li>#}
-{#                      <li><a href="hdil.html">HDIL</a></li>#}
-{#                      <li><a href="bob.html">Bank Of Baroda</a></li>#}
-{#                      <li><a href="asian.html">Asian Paints</a></li>#}
-{#                    </ul>#}
-{#                  </li>#}
-{#                  <li><a href="fundamental.html"><i class="fa fa-edit"></i> Fundamental Analysis <span class="fa fa-chevron-right"></span></a>#}
-{#                  </li>#}
-                    <li><a href="{% url 'companies' %}"><i class="fa fa-edit"></i> Predict <span class="fa fa-chevron-right"></span></a></li>
-                    <li><a href="{% url 'recommendation' %}"><i class="fa fa-edit"></i> Recommend <span class="fa fa-chevron-right"></span></a></li>
-                    <li><a href="{% url 'update' %}"><i class="fa fa-edit"></i> Update <span class="fa fa-chevron-right"></span></a></li>
-                </ul>
-              </div>
-
-            </div>
-            <!-- /sidebar menu -->
-
-            <!-- /menu footer buttons -->
-{#            <div class="sidebar-footer hidden-small">#}
-{#              <a data-toggle="tooltip" data-placement="top" title="Janit">#}
-{#                <a href="https://www.linkedin.com/in/janit-mehta-693b249a/"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a>#}
-{#              </a>#}
-{#              <a data-toggle="tooltip" data-placement="top" title="Harshad">#}
-{#                <a href=""><span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span></a>#}
-{#              </a>#}
-{#              <a data-toggle="tooltip" data-placement="top" title="Advik">#}
-{#                <a href=""><span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span></a>#}
-{#              </a>#}
-{#              <a data-toggle="tooltip" data-placement="top" title="Sahaj">#}
-{#                <a href="http:"><span class="glyphicon glyphicon-off" aria-hidden="true"></span></a>#}
-{#              </a>#}
-{#            </div>#}
-            <!-- /menu footer buttons -->
-          </div>
-        </div>
-
-        <!-- top navigation -->
-        <div class="top_nav">
-          <div class="nav_menu">
-            <nav class="" role="navigation">
-              <div class="nav toggle">
-                <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-
-{#              <ul class="nav navbar-nav navbar-right">#}
-{#                <li class="">#}
-{#                  <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">#}
-{#                    <img src="images/img.jpg" alt="">Janit Mehta#}
-{#                    <span class=" fa fa-angle-down"></span>#}
-{#                  </a>#}
-{#                  <ul class="dropdown-menu dropdown-usermenu pull-right">#}
-{#                    <li><a href="javascript:;"> Profile</a></li>#}
-{#                    <li>#}
-{#                      <a href="javascript:;">#}
-{#                        <span class="badge bg-red pull-right">50%</span>#}
-{#                        <span>Settings</span>#}
-{#                      </a>#}
-{#                    </li>#}
-{#                    <li><a href="javascript:;">Help</a></li>#}
-{#                    <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>#}
-{#                  </ul>#}
-{#                </li>#}
-{#              </ul>#}
-            </nav>
-          </div>
-        </div>
-        <!-- /top navigation -->
-
-        <!-- page content -->
-{#        {% block content %}#}
-{#        <div class="right_col" role="main">#}
-{#          <!-- top tiles -->#}
-{#          <div class="row tile_count">#}
-{#            <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">#}
-{#              <span class="count_top">Ambuja Cements Ltd (AMBUJACEM.NS)</span>#}
-{#              <div class="count">229.25</div>#}
-{#              <span class="count_bottom"><i class="red"><i class="fa fa-sort-desc"></i>2.35 (1.01%) </i></span>#}
-{#            </div>#}
-{#          </div>#}
-{#          <!-- /top tiles -->#}
-{##}
-{#          <div class="row">#}
-{#            <div class="col-md-12 col-sm-12 col-xs-12">#}
-{#              <div class="dashboard_graph">#}
-{##}
-{#               <div class="row x_title">#}
-{#                  <div class="col-md-6">#}
-{#                    <h3>Stock Price <small></small></h3>#}
-{#                  </div>#}
-{#                  <div class="col-md-6">#}
-{#                    <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">#}
-{#                      <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>#}
-{#                      <span>October 28, 2013 - January 27, 2016</span> <b class="caret"></b>#}
+{#            <!-- page content -->#}
+{#            {% block content %}#}
+{#                <div class="right_col main_content">#}
+{#                    <h2>Welcome to Stock Market Prediction</h2>#}
+{#                    <div>#}
+{#                        <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>#}
 {#                    </div>#}
-{#                  </div>#}
 {#                </div>#}
+{#            {% endblock %}#}
+{#            <!-- /page content -->#}
 {##}
-{#                <div class="col-md-9 col-sm-9 col-xs-12">#}
-{#                  <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>#}
-{#                  <div style="width: 100%;">#}
-{#                    <div class="demo-placeholder" style="width: 100%; height:330px;">#}
-{#                      <img src="ambuja/Stock.png" width=130%></img>#}
-{#                    </div>#}
-{#                  </div>#}
+{#            <!-- footer content -->#}
+{#            <footer>#}
+{#                <div class="pull-right">#}
+{#                    Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>#}
 {#                </div>#}
-{#                <div></div>#}
 {#                <div class="clearfix"></div>#}
+{#            </footer>#}
+{#            <!-- /footer content -->#}
 {##}
-{#              </div>#}
-{#            </div>#}
-{##}
-{#          </div>#}
-{#          <br />#}
-{##}
-{#          <div class="row">#}
-{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
-{#              <div class="x_panel tile fixed_height_320">#}
-{#                <div class="x_title">#}
-{#                  <h2>Output for 04-11-2016</h2>#}
-{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
-{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
-{#                    </li>#}
-{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
-{#                    </li>#}
-{#                  </ul>#}
-{#                  <div class="clearfix"></div>#}
-{#                </div>#}
-{#              <div class="x_content">#}
-{#                <table class="" style="width:100%">#}
-{#                    <tr>#}
-{#                      <th style="width:37%;">#}
-{#                        <p>Prediction</p>#}
-{#                      </th>#}
-{#                      <th style="width:37%;">#}
-{#                        <p>Predicted Price</p>#}
-{#                      </th>#}
-{#                      <th style="width:37%;">#}
-{#                        <p>Actual Price</p>#}
-{#                      </th>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>Next Day</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>240.74</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>241.69</p>#}
-{#                      </td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>5 Day</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>239.42</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>219.55</p>#}
-{#                      </td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>10 Day</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>237.06</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>198.80</p>#}
-{#                      </td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>15 Day</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>235.67</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>203.0</p>#}
-{#                      </td>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>20 Day</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>234.52</p>#}
-{#                      </td>#}
-{#                      <td style="width:37%;">#}
-{#                        <p>205.05</p>#}
-{#                      </td>#}
-{#                    </tr>#}
-{#                  </table>#}
-{##}
-{##}
-{#                  <table class="tile_info" style="width:100%">#}
-{#                    <tr>#}
-{#                      <th style="width:37%;">#}
-{#                        <p>Legend:</p>#}
-{#                      </th>#}
-{#                      <th style="width:37%;"><p></p></th>#}
-{#                    </tr>#}
-{#                    <tr>#}
-{#                        <td style="width:37%;">#}
-{#                          <p><i class="fa fa-square blue"></i>Predicted Price </p>#}
-{#                        </td>#}
-{#                        <td style="width:37%;">#}
-{#                          <p><i class="fa fa-square red"></i>Actual Price </p>#}
-{#                        </td>#}
-{#                    </tr>#}
-{#                  </table>#}
-{#                  </div>#}
-{#                </div>#}
-{#            </div>#}
-{##}
-{##}
-{##}
-{##}
-{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
-{#              <div class="x_panel tile fixed_height_320">#}
-{#                <div class="x_title">#}
-{#                  <h2>Next Day Predicton</h2>#}
-{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
-{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
-{#                    </li>#}
-{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
-{#                    </li>#}
-{#                  </ul>#}
-{#                  <div class="clearfix"></div>#}
-{#                </div>#}
-{#                <div class="x_content">#}
-{#                    <div>#}
-{#                        <img src="ambuja/1 Day Price.png" height=40% width=95%>#}
-{#                    </div>#}
-{#                    <div class="clearfix"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{##}
-{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
-{#              <div class="x_panel tile fixed_height_320">#}
-{#                <div class="x_title">#}
-{#                  <h2>5 Day Predicton</h2>#}
-{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
-{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
-{#                    </li>#}
-{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
-{#                    </li>#}
-{#                  </ul>#}
-{#                  <div class="clearfix"></div>#}
-{#                </div>#}
-{#                <div class="x_content">#}
-{#                    <div>#}
-{#                        <img src="ambuja/5 Day Price.png" height=40% width=95%>#}
-{#                    </div>#}
-{#                    <div class="clearfix"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{##}
-{#          </div>#}
-{##}
-{#          <div class="row">#}
-{##}
-{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
-{#              <div class="x_panel tile fixed_height_320">#}
-{#                <div class="x_title">#}
-{#                  <h2>10 Day Predicton</h2>#}
-{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
-{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
-{#                    </li>#}
-{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
-{#                    </li>#}
-{#                  </ul>#}
-{#                  <div class="clearfix"></div>#}
-{#                </div>#}
-{#                <div class="x_content">#}
-{#                    <div>#}
-{#                        <img src="ambuja/10 Day Price.png" height=40% width=95%>#}
-{#                    </div>#}
-{#                    <div class="clearfix"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{##}
-{##}
-{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
-{#              <div class="x_panel tile fixed_height_320">#}
-{#                <div class="x_title">#}
-{#                  <h2>15 Day Predicton</h2>#}
-{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
-{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
-{#                    </li>#}
-{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
-{#                    </li>#}
-{#                  </ul>#}
-{#                  <div class="clearfix"></div>#}
-{#                </div>#}
-{#                <div class="x_content">#}
-{#                    <div>#}
-{#                        <img src="ambuja/15 Day Price.png" height=40% width=95%>#}
-{#                    </div>#}
-{#                    <div class="clearfix"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{##}
-{#            <div class="col-md-4 col-sm-4 col-xs-12">#}
-{#              <div class="x_panel tile fixed_height_320">#}
-{#                <div class="x_title">#}
-{#                  <h2>20 Day Predicton</h2>#}
-{#                  <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">#}
-{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>#}
-{#                    </li>#}
-{#                    <li><a class="close-link"><i class="fa fa-close"></i></a>#}
-{#                    </li>#}
-{#                  </ul>#}
-{#                  <div class="clearfix"></div>#}
-{#                </div>#}
-{#                <div class="x_content">#}
-{#                    <div>#}
-{#                        <img src="ambuja/20 Day Price.png" height=40% width=95%>#}
-{#                    </div>#}
-{#                    <div class="clearfix"></div>#}
-{#                </div>#}
-{#              </div>#}
-{#            </div>#}
-{##}
-{##}
-{##}
-{#          </div>#}
-{##}
-{##}
-{#              </div>#}
-{#            </div>#}
-{#          </div>#}
 {#        </div>#}
-{#          <div class="right_col main_content">#}
-{#            <h2>Welcome to Stock Market Prediction</h2>#}
-{#            <div>#}
-{#                <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>#}
-{#            </div>#}
-{#          </div>#}
-{#        {% endblock %}#}
-{#        <!-- /page content -->#}
-{##}
-{#        <!-- footer content -->#}
-{#        <footer>#}
-{#          <div class="pull-right">#}
-{#            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>#}
-{#          </div>#}
-{#          <div class="clearfix"></div>#}
-{#        </footer>#}
-{#        <!-- /footer content -->#}
-{#      </div>#}
 {#    </div>#}
+
     <!-- jQuery -->
     <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
     <!-- Bootstrap -->
@@ -743,8 +394,9 @@
 {#    </script>#}
 {#    <!-- /gauge.js -->#}
 
+
     {% block content %}
-    <div class="right_col main_content">
+    <div class="right_col" role="main" style="height: 600px">
             <h2>Welcome to Stock Market Prediction</h2>
             <div>
                 <a class="btn btn-primary" href="{% url 'companies' %}">Let's Predict</a>
@@ -753,15 +405,16 @@
         {% endblock %}
         <!-- /page content -->
 
-        <!-- footer content -->
-        <footer>
-          <div class="pull-right">
-            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>
-          </div>
-          <div class="clearfix"></div>
-        </footer>
-        <!-- /footer content -->
+{#        <!-- footer content -->#}
+{#        <footer >#}
+{#          <div class="pull-right">#}
+{#            Stock Market Prediction by Janit Mehta, Harshad Naik, Advik Shetty, Sahaj Gandhi</a>#}
+{#          </div>#}
+{#          <div class="clearfix"></div>#}
+{#        </footer>#}
+{#        <!-- /footer content -->#}
       </div>
     </div>
-  </body>
+
+</body>
 </html>

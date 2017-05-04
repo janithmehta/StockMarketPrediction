@@ -9,13 +9,13 @@
 
     <div class="row tile_count">
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top">{{ company_latest.name }}</span>
-            <div class="count">{{ company_latest.price }}</div>
+            <span class="count_top">{{ company_latest.name }} ({{ company_latest.stock_name }})</span>
+            <div class="count">₹{{ company_latest.price }}</div>
             <span class="count_bottom">
                 {% if company_latest.change == "-" %}
-                    <i class="red"><i class="fa fa-sort-desc"></i>{{ company_latest.change_price }} </i>
+                    <i class="red"><i class="fa fa-sort-desc"></i>₹ {{ company_latest.change_price }} </i>
                 {% else %}
-                    <i class="green"><i class="fa fa-sort-asc"></i>{{ company_latest.change_price }} </i>
+                    <i class="green"><i class="fa fa-sort-asc"></i>₹ {{ company_latest.change_price }} </i>
                 {% endif %}
             </span>
         </div>
@@ -61,15 +61,15 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-    </div>
+
 
     <br>
 
-    <div class="col-md-6 col-sm-4 col-xs-12 col-md-offset-3">
+    <div class="col-md-6 col-sm-4 col-xs-12">
         <div class="x_panel tile fixed_height_320" style="margin-top: 5%">
             <div class="x_title">
 
-                <h2>Our Predictions</h2>
+                <h2>Fundamental Analysis (Long Term)</h2>
                 <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">
 {#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>#}
 {#                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>#}
@@ -79,16 +79,35 @@
             <div class="x_content">
                 <div>
                     {% if investible == 1 %}
-                        <h2 style="color: #00CC33">Based on Fundamental Analysis, this company is a good long term investment!</h2>
+{#                        <h2 style="color: #00CC33">Based on Fundamental Analysis, this company is a good long term investment!</h2>#}
+                        <img src="{% static 'img/thumbs down.png' %}" height="250" class="col-md-offset-2">
                     {% else %}
-                        <h2 style="color: #942a25">Based on Fundamental Analysis, this company is a bad long term investment!</h2>
+{#                        <h2 style="color: #942a25">Based on Fundamental Analysis, this company is a bad long term investment!</h2>#}
+                        <img src="{% static 'img/thumbs down.png' %}" height="250">
                     {% endif %}
                 </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_320" style="margin-top: 5%">
+            <div class="x_title">
+
+                <h2>Technical Analysis (Short Term)</h2>
+                <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>#}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
                 <div>
                     <table class="table">
                         <tr>
-                            <th>Day</th>
-                            <th>Value</th>
+                            <th style="border-top-color: #ffffff">Day</th>
+                            <th style="border-top-color: #ffffff">Value</th>
                         </tr>
                         {% for value in predicted_values %}
                             <tr>
@@ -103,6 +122,10 @@
             </div>
         </div>
     </div>
+
+
+    </div>
+
 
 
 </div>

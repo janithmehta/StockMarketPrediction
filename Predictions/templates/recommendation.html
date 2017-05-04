@@ -3,7 +3,7 @@
 {% block content %}
 
 
-<div class = "right_col main_content col-md-offset-2">
+<div class = "right_col col-md-offset-2" role="main" style="height: 600px">
 
     <div class="col-md-12">
         <form method="get" class="col-md-6">
@@ -27,14 +27,16 @@
                 {% if suggestions != None %}
                 <table class="table">
                     <tr>
-                        <th>Company</th>
-                        <th>Amount</th>
-                        <th>Profit</th>
+                        <th style="border-top-color: #ffffff">Company</th>
+                        <th style="border-top-color: #ffffff">Amount</th>
+                        <th style="border-top-color: #ffffff">No. of Stocks</th>
+                        <th style="border-top-color: #ffffff">Profit</th>
                     </tr>
                     {% for suggestion in suggestions %}
                         <tr>
                             <td>{{ suggestion.company_name }}</td>
                             <td>{{ suggestion.amount }}</td>
+                            <td>{{ suggestion.number_of_stocks }}</td>
                             <td>{{ suggestion.profit }}</td>
                         </tr>
                     {% endfor %}
