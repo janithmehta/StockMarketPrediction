@@ -16,7 +16,7 @@ def companies(request):
         {'value':"AMBUJACEM", 'name':"Ambuja Cement"},
         {'value':"ASIANPAINT", 'name':"Asian Paints"},
         {'value':"BANKBARODA", 'name':"Bank Of Baroda"},
-        {'value':"HDIL", 'name':"Housing Develoopment & Infrastructure Ltd."},
+        {'value':"HDIL", 'name':"Housing Development & Infrastructure Ltd."},
         {'value':"HEROMOTOCO", 'name':"Hero Motor Corporation"},
         {'value':"HINDUNILVR", 'name':"Hindustan Unilever"},
         {'value':"INFY", 'name':"Infosys"},
