@@ -9,55 +9,51 @@
 
     <div class="row tile_count">
         <div class="col-md-4 col-sm-4 col-xs-6 tile_stats_count">
-            <span class="count_top">{{ company_latest.name }}</span>
-            <div class="count">{{ company_latest.price }}</div>
+            <span class="count_top">{{ company_latest.name }} ({{ company_latest.stock_name }})</span>
+            <div class="count">₹{{ company_latest.price }}</div>
             <span class="count_bottom">
                 {% if company_latest.change == "-" %}
-                    <i class="red"><i class="fa fa-sort-desc"></i>{{ company_latest.change_price }} </i>
+                    <i class="red"><i class="fa fa-sort-desc"></i>₹ {{ company_latest.change_price }} </i>
                 {% else %}
-                    <i class="green"><i class="fa fa-sort-asc"></i>{{ company_latest.change_price }} </i>
+                    <i class="green"><i class="fa fa-sort-asc"></i>₹ {{ company_latest.change_price }} </i>
                 {% endif %}
             </span>
         </div>
     </div>
 
-<!--
+
     <div class="row">
         <div class="col-md-12 col-sm-12 col-xs-12">
-            <div class="dashboard_graph">
+            <div class="dashboard_graph" style="height: 410px">
                 <div class="row x_title">
                     <div class="col-md-6">
                         <h3>Stock Price <small></small></h3>
                     </div>
-                    <div class="col-md-6">
-                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">
-                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
-                            <span>October 28, 2013 - January 27, 2016</span> <b class="caret"></b>
-                        </div>
-                    </div>
+{#                    <div class="col-md-6">#}
+{#                        <div id="reportrange" class="pull-right" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc">#}
+{#                            <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>#}
+{#                            <span>October 28, 2013 - January 27, 2016</span> <b class="caret"></b>#}
+{#                        </div>#}
+{#                    </div>#}
                </div>
                 <div class="col-md-9 col-sm-9 col-xs-12">
                     <div id="placeholder33" style="height: 260px; display: none" class="demo-placeholder"></div>
-                    <div style="width: 100%;">
+                    <div style="width: 131%;">
                         <div class="demo-placeholder" style="width: 100%; height:330px;">
-                              <img src="{% static 'img/prices.png' %}" width=30%>
-{#                            <div id="line-example" style="width: 100%"></div>#}
+{#                              <img src="{% static 'img/prices.png' %}" width=30%>#}
+                            <div id="line-example" style="width: 100%"></div>
                                 <script>
+                                    console.log({{ company_stock_data | safe }})
                                     Morris.Line({
-                                  element: 'line-example',
-                                  data: [
-                                    { y: '2006', a: 100, b: 90 },
-                                    { y: '2007', a: 75,  b: 65 },
-                                    { y: '2008', a: 50,  b: 40 },
-                                    { y: '2009', a: 75,  b: 65 },
-                                    { y: '2010', a: 50,  b: 40 },
-                                    { y: '2011', a: 75,  b: 65 },
-                                    { y: '2012', a: 100, b: 90 }
-                                  ],
-                                  xkey: 'day',
-                                  ykey: 'value',
-                                  labels: ['Series A', 'Series B']
-                                });
+                                        element: 'line-example',
+                                        data: {{ company_stock_data | safe }},
+                                        xkey: 'day',
+                                        ykeys: ['value'],
+                                        labels: ['Price'],
+                                        pointFillColors: '#00ffff',
+                                        pointStrokeColors: '#00ffff'
+
+                                    });
                                </script>
                         </div>
                     </div>
@@ -65,14 +61,15 @@
                 <div class="clearfix"></div>
             </div>
         </div>
-    </div>
--->
+
+
     <br>
 
-    <div class="col-md-6 col-sm-4 col-xs-12 col-md-offset-3">
+    <div class="col-md-6 col-sm-4 col-xs-12">
         <div class="x_panel tile fixed_height_320" style="margin-top: 5%">
             <div class="x_title">
-                <h2>Our Predictions</h2>
+
+                <h2>Fundamental Analysis (Long Term)</h2>
                 <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">
 {#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>#}
 {#                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>#}
@@ -82,16 +79,35 @@
             <div class="x_content">
                 <div>
                     {% if investible == 1 %}
-                        <h2 style="color: #00CC33">It's a Good Investment! :)</h2>
+{#                        <h2 style="color: #00CC33">Based on Fundamental Analysis, this company is a good long term investment!</h2>#}
+                        <img src="{% static 'img/thumbs up.png' %}" height="250" class="col-md-offset-2">
                     {% else %}
-                        <h2 style="color: #942a25">Geez! Beware of this company</h2>
+{#                        <h2 style="color: #942a25">Based on Fundamental Analysis, this company is a bad long term investment!</h2>#}
+                        <img src="{% static 'img/thumbs down.png' %}" height="250">
                     {% endif %}
                 </div>
+                <div class="clearfix"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-6 col-sm-4 col-xs-12">
+        <div class="x_panel tile fixed_height_320" style="margin-top: 5%">
+            <div class="x_title">
+
+                <h2>Technical Analysis (Short Term)</h2>
+                <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>#}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
                 <div>
                     <table class="table">
                         <tr>
-                            <th>Day</th>
-                            <th>Value</th>
+                            <th style="border-top-color: #ffffff">Day</th>
+                            <th style="border-top-color: #ffffff">Value</th>
                         </tr>
                         {% for value in predicted_values %}
                             <tr>
@@ -106,6 +122,10 @@
             </div>
         </div>
     </div>
+
+
+    </div>
+
 
 
 </div>

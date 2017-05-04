@@ -3,18 +3,44 @@
 {% block content %}
 
 
-<div class = "right_col main_content">
+<div class = "right_col" role="main" style="height:600px">
 
-    <div class="row">
-        <h2>Choose a company</h2>
-        <form action="{% url 'selected_company' %}" method="post">
-            {% csrf_token %}
-            {% for company in companies_list %}
-                <input type="radio" id="company{{ forloop.counter }}" name="company" value="{{ company.value }}" required/> <label for="company{{ forloop.counter }}">{{ company.name }}</label><br />
-            {% endfor %}
-            <input type="submit" class="btn btn-primary" value="See the Prediction">
-        </form>
+{#    <div class="row tile_count">#}
+{#        <h2>Choose a company</h2>#}
+{#        <form action="{% url 'selected_company' %}" method="post">#}
+{#            {% csrf_token %}#}
+{#            {% for company in companies_list %}#}
+{#                <input type="radio" id="company{{ forloop.counter }}" name="company" value="{{ company.value }}" required/> <label for="company{{ forloop.counter }}">{{ company.name }}</label><br />#}
+{#            {% endfor %}#}
+{#            <input type="submit" class="btn btn-primary" value="See the Prediction">#}
+{#        </form>#}
+{##}
+{#    </div>#}
 
+    <div class="col-md-6 col-sm-4 col-xs-12 col-md-offset-3">
+        <div class="x_panel tile fixed_height_320" style="margin-top: 5%; height: 400px !important">
+            <div class="x_title">
+
+                <h2>Choose a company</h2>
+                <ul class="nav navbar-right panel_toolbox" style="padding-left:5%">
+{#                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a></li>#}
+{#                    <li><a class="close-link"><i class="fa fa-close"></i></a></li>#}
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <form action="{% url 'selected_company' %}" method="post">
+                    {% csrf_token %}
+                    {% for company in companies_list %}
+                        <input type="radio" id="company{{ forloop.counter }}" name="company" value="{{ company.value }}" required/>
+                        <label for="company{{ forloop.counter }}" style="font-weight: 200">{{ company.name }}</label>
+                        <br />
+                    {% endfor %}
+                    <input type="submit" class="btn btn-primary" style="float: right" value="See the Prediction">
+                </form>
+                <div class="clearfix"></div>
+            </div>
+        </div>
     </div>
 
 </div>
