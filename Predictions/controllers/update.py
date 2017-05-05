@@ -437,7 +437,7 @@ def update_one(company):
 
 
 def update():
-    list1=['AMBUJACEM','ASIANPAINT','BANKBARODA']
+    list1=['AMBUJACEM','ASIANPAINT','BANKBARODA','HDIL','HEROMOTOCO','HINDUNILVR','ITC','INFY','TCS','MARUTI']
     for i in list1:
     	update_one(i)
     print('Updated Successfully!')
