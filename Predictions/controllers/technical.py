@@ -184,7 +184,7 @@ def recommend(amount):
     x_20=initial_seed*0.2
     val1=int(x_50/sorted_price_change[0]['curr'])
     val2=int(x_30/sorted_price_change[1]['curr'])
-    val3=int(x_20/sorted_price_change[1]['curr'])
+    val3=int(x_20/sorted_price_change[2]['curr'])
     suggestions = []
 
     if float(sorted_price_change[2]['change']) > 0:
@@ -232,11 +232,13 @@ def recommend(amount):
                 temp['number_of_stocks']=val1
                 temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
-    elif float(sorted_price_change[0]['change']) < 0:
+    elif float(sorted_price_change[0]['change']) < 0 or len(suggestions)<2:
         temp = {}
         temp['company_name'] = "Don't Invest"
         temp['amount'] = 0
         temp['profit'] = "negative"
         suggestions.append(temp)
-
+        print(len(suggestions))
     return suggestions
+
+#recommend(5000)
