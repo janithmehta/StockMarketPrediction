@@ -13,6 +13,7 @@ urlpatterns = [
     url(r'^technical_analysis/(?P<company>[A-Z]+$)', 'Predictions.views.technical', name='technical'),
     url(r'^recommendation/$', 'Predictions.views.recommendation', name='recommendation'),
     url(r'^update/$', 'Predictions.views.update', name='update'),
+    url(r'^accuracies/$', 'Predictions.views.accuracies', name='accuracies'),
 
 
 ]

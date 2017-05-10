@@ -8,11 +8,7 @@ from Predictions.controllers import update as up
 
 # Create your views here.
 
-def index(request):
-    return render(request, "index.html", {})
-
-def companies(request):
-    companies_list = [
+companies_list = [
         {'value':"AMBUJACEM", 'name':"Ambuja Cement"},
         {'value':"ASIANPAINT", 'name':"Asian Paints"},
         {'value':"BANKBARODA", 'name':"Bank Of Baroda"},
@@ -24,6 +20,11 @@ def companies(request):
         {'value':"MARUTI", 'name':"Maruti Suzuki Ltd."},
         {'value':"TCS", 'name':"Tata Consultancy Services"},
     ]
+
+def index(request):
+    return render(request, "index.html", {})
+
+def companies(request):
     return render(request, "companies.html", context={'companies_list':companies_list})
 
 def selected_company(request):
@@ -58,3 +59,6 @@ def update(request):
         if request.POST['confirm']:
             up.update()
     return render(request, "update.html", context={'last_updated_date': last_updated_date})
+
+def accuracies(request):
+    return render(request, "accuracies.html", context={'companies_list':companies_list})
