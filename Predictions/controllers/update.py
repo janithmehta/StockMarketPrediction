@@ -14,11 +14,16 @@ def update_one(company):
 	#n rows pulls last n days worth of data
 	# x.drop(x.columns[[3,5,6]])
 	# print(list(x))
-	row = pd.DataFrame([[da,x[comp+' - Open'][0],x[comp+' - High'][0],x[comp+' - Low'][0],x[comp+' - Close'][0],x[comp+' - Total Trade Quantity'][0],0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
+	#df=pd.read_csv(file_name)
+	row = pd.DataFrame([[da,x[comp+' - Open'][0],x[comp+' - High'][0],x[comp+' - Low'][0],x[comp+' - Close'][0],x[comp+' - Close'][0],x[comp+' - Total Trade Quantity'][0],0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]])
 	print(row)
 	k=settings.MEDIA_ROOT+file_name
+	#k=file_name
 	with open(k, 'a') as f:
 	    row.to_csv(f, header=False)
+	#Comment this Later
+	df=pd.read_csv(settings.MEDIA_ROOT+file_name)
+	'''
 	#df = pd.read_csv(settings.MEDIA_ROOT + name)
 	ds=pd.read_csv(settings.MEDIA_ROOT+file_name)
 	ds_rev=ds[::-1]
@@ -82,24 +87,25 @@ def update_one(company):
 	# df['Ten Day Trend']=0.00
 	# df['Fifteen Day Trend']=0.00
 	# df['Twenty Day Trend']=0.00
-	i=0
+	'''
+	i=len(df)-1
 	# print(df['Date'][:-1])
 
 	# for i in range(len(df)-1, len(df)):
 	# 	if count==1:
 	# 		break
-	df['X1'][i]=(df['Close'][i]-df['Close'][i+1])/(df['Close'][i+1])
+	df['X1'][i]=(df['Close'][i]-df['Close'][i-1])/(df['Close'][i-1])
 
 	ma5=0.0
 	for j in range(1,6):
-		ma5+=df['Close'][i+j]
+		ma5+=df['Close'][i-j]
 	ma5=ma5/5
 
 	df['X2'][i]=(df['Close'][i]-ma5)/ma5
 
 	ma10=0.0
 	for j in range(1,11):
-		ma10+=df['Close'][i+j]
+		ma10+=df['Close'][i-j]
 	ma10=ma10/10
 
 	df['X3'][i]=(df['Close'][i]-ma10)/ma10
@@ -107,42 +113,42 @@ def update_one(company):
 
 	ma15=0.0
 	for j in range(1,16):
-		ma15+=df['Close'][i+j]
+		ma15+=df['Close'][i-j]
 	ma15=ma15/15
 
 	df['X4'][i]=(df['Close'][i]-ma15)/ma15
 
 	ma20=0.0
 	for j in range(1,21):
-		ma20+=df['Close'][i+j]
+		ma20+=df['Close'][i-j]
 	ma20=ma20/20
 
 	df['X5'][i]=(df['Close'][i]-ma20)/ma20
 
 	ma25=0.0
 	for j in range(1,26):
-		ma25+=df['Close'][i+j]
+		ma25+=df['Close'][i-j]
 	ma25=ma25/25
 
 	df['X6'][i]=(df['Close'][i]-ma25)/ma25
 
 	ma30=0.0
 	for j in range(1,31):
-		ma30+=df['Close'][i+j]
+		ma30+=df['Close'][i-j]
 	ma30=ma30/30
 
 	df['X7'][i]=(df['Close'][i]-ma30)/ma30
 
 	ma35=0.0
 	for j in range(1,36):
-		ma35+=df['Close'][i+j]
+		ma35+=df['Close'][i-j]
 	ma35=ma35/35
 
 	df['X8'][i]=(df['Close'][i]-ma35)/ma35
 
 	ma40=0.0
 	for j in range(1,41):
-		ma40+=df['Close'][i+j]
+		ma40+=df['Close'][i-j]
 	ma40=ma40/40
 
 	df['X9'][i]=(df['Close'][i]-ma40)/ma40
@@ -150,22 +156,22 @@ def update_one(company):
 
 	ub10=0.0
 	#print(df['Close'][i-1:i-11])
-	ub10=ma10+0.02*st.pstdev(df['Close'][i+1:i+11])
+	ub10=ma10+0.02*st.pstdev(df['Close'][i-11:i-1])
 
 	lb10=0.0
-	lb10=ma10-0.02*st.pstdev(df['Close'][i+1:i+11])
+	lb10=ma10-0.02*st.pstdev(df['Close'][i-11:i-1])
 
 	ub20=0.0
-	ub20=ma20+0.02*st.pstdev(df['Close'][i+1:i+21])
+	ub20=ma20+0.02*st.pstdev(df['Close'][i-11:i-1])
 
 	lb20=0.0
-	lb20=ma20-0.02*st.pstdev(df['Close'][i+1:i+21])
+	lb20=ma20-0.02*st.pstdev(df['Close'][i-21:i-1])
 
 	ub30=0.0
-	ub30=ma30+0.02*st.pstdev(df['Close'][i+1:i+31])
+	ub30=ma30+0.02*st.pstdev(df['Close'][i-31:i-1])
 
 	lb30=0.0
-	lb30=ma30-0.02*st.pstdev(df['Close'][i+1:i+31])
+	lb30=ma30-0.02*st.pstdev(df['Close'][i-31:i-1])
 
 
 	if df['Close'][i]>ub10:
@@ -188,7 +194,7 @@ def update_one(company):
 	gain=0.0
 	loss=0.0
 	for j in range(0,5):
-		change=df['Close'][i+j]-df['Close'][i+j+1]
+		change=df['Close'][i-j]-df['Close'][i-j-1]
 		if change>0.0:
 			gain+=change
 		elif change<0.0:
@@ -209,7 +215,7 @@ def update_one(company):
 	gain=0.0
 	loss=0.0
 	for j in range(0,10):
-		change=df['Close'][i+j]-df['Close'][i+j+1]	
+		change=df['Close'][i-j]-df['Close'][i-j-1]	
 		if change>0.0:
 			gain+=change
 		elif change<0.0:
@@ -229,7 +235,7 @@ def update_one(company):
 	gain=0.0
 	loss=0.0
 	for j in range(0,15):
-		change=df['Close'][i+j]-df['Close'][i+j+1]
+		change=df['Close'][i-j]-df['Close'][i-j-1]
 		if change>0.0:
 			gain+=change
 		elif change<0.0:
@@ -249,7 +255,7 @@ def update_one(company):
 	gain=0.0
 	loss=0.0
 	for j in range(0,20):
-		change=df['Close'][i+j]-df['Close'][i+j+1]
+		change=df['Close'][i-j]-df['Close'][i-j-1]
 		if change>0.0:
 			gain+=change
 		elif change<0.0:
@@ -267,8 +273,8 @@ def update_one(company):
 	min_low_price=1000000
 	max_high_price=0
 	for j in range(1,6):
-		min_low_price=min(min_low_price,df['Low'][i+j])
-		max_high_price=max(max_high_price,df['High'][i+j])
+		min_low_price=min(min_low_price,df['Low'][i-j])
+		max_high_price=max(max_high_price,df['High'][i-j])
 
 	k5=100*((df['Close'][i]-min_low_price)/(max_high_price-min_low_price))
 
@@ -278,8 +284,8 @@ def update_one(company):
 	min_low_price=1000000
 	max_high_price=0
 	for j in range(1,11):
-		min_low_price=min(min_low_price,df['Low'][i+j])
-		max_high_price=max(max_high_price,df['High'][i+j])
+		min_low_price=min(min_low_price,df['Low'][i-j])
+		max_high_price=max(max_high_price,df['High'][i-j])
 
 	k10=100*((df['Close'][i]-min_low_price)/(max_high_price-min_low_price))
 
@@ -289,8 +295,8 @@ def update_one(company):
 	min_low_price=1000000
 	max_high_price=0
 	for j in range(1,16):
-		min_low_price=min(min_low_price,df['Low'][i+j])
-		max_high_price=max(max_high_price,df['High'][i+j])
+		min_low_price=min(min_low_price,df['Low'][i-j])
+		max_high_price=max(max_high_price,df['High'][i-j])
 
 	k15=100*((df['Close'][i]-min_low_price)/(max_high_price-min_low_price))
 
@@ -300,8 +306,8 @@ def update_one(company):
 	min_low_price=1000000
 	max_high_price=0
 	for j in range(1,21):
-		min_low_price=min(min_low_price,df['Low'][i+j])
-		max_high_price=max(max_high_price,df['High'][i+j])
+		min_low_price=min(min_low_price,df['Low'][i-j])
+		max_high_price=max(max_high_price,df['High'][i-j])
 
 	k20=100*((df['Close'][i]-min_low_price)/(max_high_price-min_low_price))
 
@@ -319,15 +325,15 @@ def update_one(company):
 
 	df['20 Day Price'][i]=0
 
-	df['M1'][i]=(df['Close'][i]-df['Close'][i+1])/(df['Close'][i+1])
+	df['M1'][i]=(df['Close'][i]-df['Close'][i-1])/(df['Close'][i-1])
 
-	df['M5'][i]=(df['Close'][i]-df['Close'][i+5])/(df['Close'][i+5])
+	df['M5'][i]=(df['Close'][i]-df['Close'][i-5])/(df['Close'][i-5])
 
-	df['M10'][i]=(df['Close'][i]-df['Close'][i+10])/(df['Close'][i+10])
+	df['M10'][i]=(df['Close'][i]-df['Close'][i-10])/(df['Close'][i-10])
 
-	df['M15'][i]=(df['Close'][i]-df['Close'][i+15])/(df['Close'][i+15])
+	df['M15'][i]=(df['Close'][i]-df['Close'][i-15])/(df['Close'][i-15])
 
-	df['M20'][i]=(df['Close'][i]-df['Close'][i+20])/(df['Close'][i+20])
+	df['M20'][i]=(df['Close'][i]-df['Close'][i-20])/(df['Close'][i-20])
 
 	if df['M1'][i]>0:
 		df['One Day Momentum'][i]=1
@@ -354,35 +360,35 @@ def update_one(company):
 	else:
 		df['Twenty Day Momentum'][i]=-1
 
-	df['One Day Change'][i]=(df['Close'][i+1]-df['Close'][i])/(df['Close'][i])
+	df['One Day Change'][i]=(df['Close'][i-1]-df['Close'][i])/(df['Close'][i])
 
 	if df['One Day Change'][i]>0:
 		df['One Day Trend'][i]=1
 	else:
 		df['One Day Trend'][i]=-1
 
-	df['Five Day Change'][i]=(df['Close'][i+5]-df['Close'][i])/(df['Close'][i])
+	df['Five Day Change'][i]=(df['Close'][i-5]-df['Close'][i])/(df['Close'][i])
 
 	if df['Five Day Change'][i]>0:
 		df['Five Day Trend'][i]=1
 	else:
 		df['Five Day Trend'][i]=-1
 
-	df['Ten Day Change'][i]=(df['Close'][i+10]-df['Close'][i])/(df['Close'][i])
+	df['Ten Day Change'][i]=(df['Close'][i-10]-df['Close'][i])/(df['Close'][i])
 
 	if df['Ten Day Change'][i]>0:
 		df['Ten Day Trend'][i]=1
 	else:
 		df['Ten Day Trend'][i]=-1
 
-	df['Fifteen Day Change'][i]=(df['Close'][i+15]-df['Close'][i])/(df['Close'][i])
+	df['Fifteen Day Change'][i]=(df['Close'][i-15]-df['Close'][i])/(df['Close'][i])
 
 	if df['Fifteen Day Change'][i]>0:
 		df['Fifteen Day Trend'][i]=1
 	else:
 		df['Fifteen Day Trend'][i]=-1
 
-	df['Twenty Day Change'][i]=(df['Close'][i+20]-df['Close'][i])/(df['Close'][i])
+	df['Twenty Day Change'][i]=(df['Close'][i-20]-df['Close'][i])/(df['Close'][i])
 
 	if df['Twenty Day Change'][i]>0:
 		df['Twenty Day Trend'][i]=1
@@ -392,47 +398,48 @@ def update_one(company):
 	print("Loop1")
 
 
-	for i in range(0,1):
+	for i in range(len(df)-1,len(df)):
 		d5=0.0
 		for j in range(1,6):
-			d5+=df['K5'][i+j]
+			d5+=df['K5'][i-j]
 		d5=d5/5
 		df['X21'][i]=(df['K5'][i]-d5-50)/50
 
 		d10=0.0
 		for j in range(1,11):
-			d10+=df['K10'][i+j]
+			d10+=df['K10'][i-j]
 		d10=d10/10
 		df['X22'][i]=(df['K10'][i]-d10-50)/50
 
 		d15=0.0
 		for j in range(1,16):
-			d15+=df['K15'][i+j]
+			d15+=df['K15'][i-j]
 		d15=d15/15
 		df['X23'][i]=(df['K15'][i]-d15-50)/50
 
 		d20=0.0
 		for j in range(1,21):
-			d20+=df['K20'][i+j]
+			d20+=df['K20'][i-j]
 		d20=d20/20
 		df['X24'][i]=(df['K20'][i]-d20-50)/50
 		print("Loop2")
 
-	for i in range(20,40):
-		df['Next Day Price']=df['Close'][i-1]
-		df['5 Day Price']=df['Close'][i-5]
-		df['10 Day Price']=df['Close'][i-10]
-		df['15 Day Price']=df['Close'][i-15]
-		df['20 Day Price']=df['Close'][i-20]
+	for i in range(len(df)-40,len(df)-20):
+		df['Next Day Price']=df['Close'][i+1]
+		df['5 Day Price']=df['Close'][i+5]
+		df['10 Day Price']=df['Close'][i+10]
+		df['15 Day Price']=df['Close'][i+15]
+		df['20 Day Price']=df['Close'][i+20]
 
 
 	#df=df.ix[20:]
 	#df=df.ix[:-20]
 	# df=df.drop(df.index[0:41])
 	#df=df.drop(df.index[790:len(df['Date'])])
-	df=df[::-1]
+	#df=df[::-1]
 	df.drop('Unnamed: 0', axis=1, inplace=True)
-	df.drop('Unnamed: 0.1',axis=1,inplace=True)
+	#df.drop('Unnamed: 0.1',axis=1,inplace=True)
+	#df.to_csv('AMBUJA5.csv')
 	df.to_csv(settings.MEDIA_ROOT+file_name)
 
 
@@ -450,3 +457,14 @@ def get_last_updated_data():
         ds=pd.read_csv(settings.MEDIA_ROOT+file_name)
         x=ds['Date'][len(ds)-1]
         return x
+
+def trial():
+	df=pd.read_csv('AMBUJACEM.csv')
+	print(df['Date'][len(df)-1])
+	df.drop('Unnamed: 0', axis=1, inplace=True)
+	df.to_csv('AMBUJA3.csv')
+
+
+
+#update_one('AMBUJACEM')
+#trial()

@@ -68,19 +68,76 @@ def predict(company):
     df=df.dropna()
     predictions=[]
     list_index=['Next Day Price','5 Day Price','10 Day Price','15 Day Price','20 Day Price']
+    '''
     for h in list_index:
-        X = np.array(df[FEATURES].values)
-        y = (df[h].values)
-        reg=linear_model.Lasso(alpha=0.1)
-        reg.fit(X[0:len(df)-21],y[0:len(df)-21])
-        price=reg.predict(X[len(df)-1])[0]
-        dict2={'day':"",'value':""}
-        print(X[len(df)-1])
-        dict2['day']=h
-        dict2['value']=price
-        predictions.append(dict2)
-
+        if(h=='Next Day Price'):
+        		X=np.array(df[FEATURES].values)
+        		y=(df[h].values)
+        		reg=linear_model.Lasso(alpha=0.1)
+        		reg.fit(X[40:len(df)-1],y[40:len(df)-1])
+        		price=reg.predict(X[len(df)-1])[0]
+        		dict2={'day':"",'value':""}
+        		print(X[len(df)-1])
+        		dict2['day']=h
+        		dict2['value']=price
+        		predictions.append(dict2)
+        elif(h=='5 Day Price'):
+        		X = np.array(df[FEATURES].values)
+        		y = (df[h].values)
+        		reg=linear_model.Lasso(alpha=0.1)
+       			reg.fit(X[40:len(df)-5],y[40:len(df)-5])
+        		price=reg.predict(X[len(df)-1])[0]
+        		dict2={'day':"",'value':""}
+        		print(X[len(df)-1])
+        		dict2['day']=h
+        		dict2['value']=price
+        		predictions.append(dict2)
+        elif(h=='10 Day Price'):
+                X = np.array(df[FEATURES].values)
+                y = (df[h].values)
+                reg=linear_model.Lasso(alpha=0.1)
+                reg.fit(X[40:len(df)-10],y[40:len(df)-10])
+                price=reg.predict(X[len(df)-1])[0]
+                dict2={'day':"",'value':""}
+                print(X[len(df)-1])
+                dict2['day']=h
+                dict2['value']=price
+                predictions.append(dict2)
+        elif(h=='15 Day Price'):
+                X = np.array(df[FEATURES].values)
+                y = (df[h].values)
+                reg=linear_model.Lasso(alpha=0.1)
+                reg.fit(X[40:len(df)-15],y[40:len(df)-15])
+                price=reg.predict(X[len(df)-1])[0]
+                dict2={'day':"",'value':""}
+                print(X[len(df)-1])
+                dict2['day']=h
+                dict2['value']=price
+                predictions.append(dict2)
+        else:
+                X = np.array(df[FEATURES].values)
+                y = (df[h].values)
+                reg=linear_model.Lasso(alpha=0.1)
+                reg.fit(X[40:len(df)-20],y[40:len(df)-20])
+                price=reg.predict(X[len(df)-1])[0]
+                dict2={'day':"",'value':""}
+                print(X[len(df)-1])
+                dict2['day']=h
+                dict2['value']=price
+                predictions.append(dict2)
     print(predictions)
+    '''
+    for h in list_index:    
+            X = np.array(df[FEATURES].values)
+            y = (df[h].values)
+            reg=linear_model.Lasso(alpha=0.1)
+            reg.fit(X[40:len(df)-20],y[40:len(df)-20])
+            price=reg.predict(X[len(df)-1])[0]
+            dict2={'day':"",'value':""}
+            print(X[len(df)-1])
+            dict2['day']=h
+            dict2['value']=price
+            predictions.append(dict2)
     '''
     predictions =  [
     {'day':"Tomorrow", 'value':"58.55"},
@@ -97,13 +154,13 @@ def stock_prices(company):
     name=company+'.csv'
     df = pd.DataFrame.from_csv(settings.MEDIA_ROOT + name)
     #test_size = 200
-    df=df.replace([np.inf,-np.inf],np.nan)
-    df=df.replace('#DIV/0!',np.nan)
-    df=df.dropna()
-    print(df.keys())
+    #df=df.replace([np.inf,-np.inf],np.nan)
+    #df=df.replace('#DIV/0!',np.nan)
+    #df=df.dropna()
+    #print(df.keys())
     #print(df['Date'][1])
     prices=[]
-    for i in range(40,len(df)-1):
+    for i in range(0,len(df)):
         dict2={'day':"",'value':""}
         dict2['day']=df['Date'][i]
         dict2['value']=df['Close'][i]
@@ -150,7 +207,7 @@ def plot(company):
     df=df.dropna()
     dates=[]
     prices=[]
-    for i in range(40,len(df)):
+    for i in range(0,len(df)):
         dates.append(df['Date'][i])
         prices.append(df['Close'][i])
     x = [dt.datetime.strptime(d,'%d-%m-%Y').date() for d in dates]
