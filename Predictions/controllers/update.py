@@ -423,16 +423,17 @@ def update_one(company):
 		d20=d20/20
 		df['X24'][i]=(df['K20'][i]-d20-50)/50
 		print("Loop2")
-
-	for i in range(len(df)-40,len(df)-20):
-		df['Next Day Price']=df['Close'][i+1]
-		df['5 Day Price']=df['Close'][i+5]
-		df['10 Day Price']=df['Close'][i+10]
-		df['15 Day Price']=df['Close'][i+15]
-		df['20 Day Price']=df['Close'][i+20]
-
-
 	#df=df.ix[20:]
+	i=len(df)-2
+	df['Next Day Price'][i]=df['Close'][i+1]
+	i=len(df)-6
+	df['5 Day Price'][i]=df['Close'][i+5]
+	i=len(df)-11
+	df['10 Day Price'][i]=df['Close'][i+10]
+	i=len(df)-16
+	df['15 Day Price'][i]=df['Close'][i+15]
+	i=len(df)-21
+	df['20 Day Price'][i]=df['Close'][i+20]
 	#df=df.ix[:-20]
 	# df=df.drop(df.index[0:41])
 	#df=df.drop(df.index[790:len(df['Date'])])
