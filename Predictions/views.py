@@ -46,6 +46,8 @@ def technical(request, company):
 
 def recommendation(request):
     suggestions = []
+    total_amount_invested=0
+    amount_not_invested=0
     if request.GET.get('amount'):
         amount = request.GET.get('amount')
         recommendations = tech.recommend(amount)
