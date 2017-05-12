@@ -48,8 +48,11 @@ def recommendation(request):
     suggestions = []
     if request.GET.get('amount'):
         amount = request.GET.get('amount')
-        suggestions = tech.recommend(amount)
-    return render(request,  "recommendation.html", context={'suggestions':suggestions})
+        recommendations = tech.recommend(amount)
+        suggestions = recommendations['suggestions']
+        total_amount_invested = recommendations['total_amount_invested']
+        amount_not_invested = recommendations['amount_not_invested']
+    return render(request,  "recommendation.html", context={'suggestions':suggestions, 'total_amount_invested':total_amount_invested, 'amount_not_invested':amount_not_invested})
 
 def update(request):
     print(datetime.now())

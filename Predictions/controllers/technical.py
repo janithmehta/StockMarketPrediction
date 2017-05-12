@@ -249,19 +249,19 @@ def recommend(amount):
             temp = {}
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_50
+                temp['amount'] = val1*sorted_price_change[0]['curr']
                 temp['number_of_stocks']=val1        
                 temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[1]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_30            
+                temp['amount'] = val2*sorted_price_change[1]['curr']            
                 temp['number_of_stocks']=val2 
                 temp['profit'] = (sorted_price_change[1]['change'] * val2)
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[2]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_20
+                temp['amount'] = val3*sorted_price_change[2]['curr']
                 temp['number_of_stocks']=val3 
                 temp['profit'] = (sorted_price_change[2]['change'] * val3)
                 suggestions.append(temp)
@@ -270,13 +270,13 @@ def recommend(amount):
             temp = {}
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_50
+                temp['amount'] = val1*sorted_price_change[0]['curr']
                 temp['number_of_stocks']=val1
                 temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
             elif c['value'] == sorted_price_change[1]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_30
+                temp['amount'] = val2*sorted_price_change[1]['curr']
                 temp['number_of_stocks']=val2 
                 temp['profit'] = (sorted_price_change[1]['change'] * val2)
                 suggestions.append(temp)
@@ -285,17 +285,29 @@ def recommend(amount):
             temp = {}
             if c['value'] == sorted_price_change[0]['company']:
                 temp['company_name'] = c['name']
-                temp['amount'] = x_50
+                temp['amount'] = val1*sorted_price_change[0]['curr']
                 temp['number_of_stocks']=val1
                 temp['profit'] = (sorted_price_change[0]['change'] * val1)
                 suggestions.append(temp)
     elif float(sorted_price_change[0]['change']) < 0 or len(suggestions)<2:
         temp = {}
-        temp['company_name'] = "Don't Invest"
+        temp['company_name'] = "Don't Invest in anymore companies"
         temp['amount'] = 0
-        temp['profit'] = "negative"
+        temp['number_of_stocks'] = 0
+        temp['profit'] = -1
         suggestions.append(temp)
         print(len(suggestions))
-    return suggestions
+
+    total_amount_invested = 0
+    for i in suggestions:
+    	total_amount_invested+=float(i['amount'])
+    	i['amount'] = round(i['amount'], 2)
+    	i['profit'] = round(i['profit'], 2)
+    amount_not_invested = float(amount) - float(total_amount_invested)
+    output = {}
+    output['total_amount_invested'] = round(total_amount_invested, 2)
+    output['amount_not_invested'] = round(amount_not_invested, 2)
+    output['suggestions'] = suggestions
+    return output
 
 #recommend(5000)
