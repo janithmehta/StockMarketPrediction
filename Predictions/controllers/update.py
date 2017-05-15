@@ -1,6 +1,8 @@
 import pandas as pd
 import quandl
 import statistics as st
+import warnings
+warnings.filterwarnings("ignore")
 from datetime import date
 from pprint import pprint
 import numpy as np
