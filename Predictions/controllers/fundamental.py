@@ -89,6 +89,8 @@ def predict(company):
     clf.fit(X,y)
     #asian paints
     #print(clf.predict([16.65,51.74,7.5,131.84,28.20,16.65,21.38,0.01,151.19,1.47,45.03,16.79,6.59,30.76,6.58,6.59]))
+    ratios = np.array(ratios)
+    ratios = ratios.reshape(1, -1)
     if clf.predict(ratios):
         return 0
     else:

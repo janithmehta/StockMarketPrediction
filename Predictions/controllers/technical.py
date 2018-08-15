@@ -132,7 +132,9 @@ def predict(company):
             y = (df[h].values)
             reg=linear_model.Lasso(alpha=0.1)
             reg.fit(X[40:len(df)-20],y[40:len(df)-20])
-            price=reg.predict(X[len(df)-1])[0]
+            data = np.array(X[len(df)-1])
+            data = data.reshape(1, -1)
+            price=reg.predict(data)[0]
             dict2={'day':"",'value':""}
             print(X[len(df)-1])
             dict2['day']=h
